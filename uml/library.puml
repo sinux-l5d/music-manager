@@ -1,0 +1,75 @@
+@startuml
+
+'Relationships
+LibraryStorageCommon "1" *-- "1" LibraryStorageLinkedList
+LibraryStorageCommon "1" *-- "1" LibraryStorageHashMap
+LibraryStorageCommon ..|> LibraryStorage
+
+MyLinkedListIterator - MyLinkedList
+MyLinkedListIterator ..|> Iterator
+MyLinkedList ..|> Iterable
+
+LibraryStorageHashMap ..|> LibraryStorage
+LibraryStorageHashMap --|> MyHashMap
+Song "*" o- "1" LibraryStorageHashMap
+
+LibraryStorageLinkedList ..|> LibraryStorage
+LibraryStorageLinkedList --|> MyLinkedList
+Song "*" o--- "1" LibraryStorageLinkedList
+
+class LibraryStorageCommon <<Proxy>> <<Singleton>>
+
+interface LibraryStorage {
+    + void add(Song song)
+}
+
+'Linked list
+class LibraryStorageLinkedList
+
+class MyLinkedList<T extends Song> {
+    + MyLinkedList()
+}
+
+class MyLinkedListIterator<T>
+
+interface Iterable<T> {
+    + Iterator<T> iterator()
+}
+
+interface Iterator<T> {
+    + boolean hasNext()
+    + T next()
+    + void remove()
+}
+
+'Hash map
+
+class LibraryStorageHashMap
+
+class MyHashMap<T extends Song> {
+    + MyHashMap()
+}
+
+'Song
+
+class Song {
+    - title: String
+    - artist: String
+    - album: String
+    - genre: String
+    - trackingNumber: int
+    - playCount: int
+    - rating: int
+    + Song(String title, String artist, String album, String genre, int trackingNumber)
+}
+
+'Playlists
+
+Playlist "*" -* "1" PlaylistManager
+Playlist "*" o-- "1" Song
+
+class PlaylistManager {
+    - playlists: Map<String, Playlist>
+}
+
+@enduml
