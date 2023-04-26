@@ -20,10 +20,33 @@ LibraryStorageLinkedList ..|> LibraryStorage
 LibraryStorageLinkedList --|> MyLinkedList
 Song "*" o--- "1" LibraryStorageLinkedList
 
+Comparable <|-- Song
+
+TitleComparator ..|> Comparator
+Song +- TitleComparator
+ArtistComparator ..|> Comparator
+Song +- ArtistComparator
+AlbumComparator ..|> Comparator
+Song +- AlbumComparator
+GenreComparator ..|> Comparator
+Song +- GenreComparator
+
+
+class Comparable<T extends Song> {
+    + int compareTo(Song other)
+}
+
+interface Comparator<T extends Song> {
+    + int compare(Song song1, Song song2)
+}
+
 class LibraryStorageCommon <<Proxy>> <<Singleton>>
 
 interface LibraryStorage {
     + void add(Song song)
+    + void remove(Song song)
+    + Song get(int trackingNumber)
+    + void update(Song song)
 }
 
 'Linked list
