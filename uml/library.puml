@@ -5,10 +5,6 @@ LibraryStorageCommon "1" *-- "1" LibraryStorageLinkedList
 LibraryStorageCommon "1" *-- "1" LibraryStorageHashMap
 LibraryStorageCommon ..|> LibraryStorage
 
-MyLinkedListIterator - MyLinkedList
-MyLinkedListIterator ..|> Iterator
-MyLinkedList ..|> Iterable
-
 Playlist "*" --* "*" PlaylistManager
 Playlist "*" o- "1" Song
 
@@ -19,6 +15,10 @@ Song "*" o--- "1" LibraryStorageHashMap
 LibraryStorageLinkedList ..|> LibraryStorage
 LibraryStorageLinkedList --|> MyLinkedList
 Song "*" o--- "1" LibraryStorageLinkedList
+
+MyLinkedListIterator - MyLinkedList
+MyLinkedListIterator ..|> Iterator
+MyLinkedList ..|> Iterable
 
 Comparable <|-- Song
 
