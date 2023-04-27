@@ -6,8 +6,10 @@ LibraryStorageCommon "1" *-- "1" LibraryStorageLinkedList
 LibraryStorageCommon "1" *-- "1" LibraryStorageHashMap
 LibraryStorageCommon ..|> LibraryStorage
 
+'use MyHashMap
 Playlist "*" --* "*" PlaylistManager
-Playlist "*" o- "1" Song
+Playlist - Song
+'LibraryStorage "1" -o Playlist
 
 LibraryStorageHashMap ..|> LibraryStorage
 LibraryStorageHashMap --|> MyHashMap
@@ -17,20 +19,21 @@ LibraryStorageLinkedList ..|> LibraryStorage
 LibraryStorageLinkedList --|> MyLinkedList
 Song "*" o--- "1" LibraryStorageLinkedList
 
-MyLinkedListIterator - MyLinkedList
+MyLinkedListIterator o- "1" MyLinkedList
+MyLinkedListIterator -+ MyLinkedList
 MyLinkedListIterator ..|> Iterator
 MyLinkedList ..|> Iterable
 
 Comparable <|-- Song
 
 TitleComparator ..|> Comparator
-Song +- TitleComparator
+Song - TitleComparator
 ArtistComparator ..|> Comparator
-Song +- ArtistComparator
+Song - ArtistComparator
 AlbumComparator ..|> Comparator
-Song +- AlbumComparator
+Song - AlbumComparator
 GenreComparator ..|> Comparator
-Song +- GenreComparator
+Song - GenreComparator
 
 
 class Comparable<T extends Song> {
@@ -48,6 +51,9 @@ interface LibraryStorage {
     + void remove(Song song)
     + Song get(int trackingNumber)
     + void update(Song song)
+    + void search(int id)
+    + void search(String title)
+    + void search(String artist)
 }
 
 'Linked list
@@ -73,7 +79,7 @@ interface Iterator<T> {
 
 class LibraryStorageHashMap
 
-class MyHashMap<T extends Song> {
+class MyHashMap<K extends int, V extends Song> {
     + MyHashMap()
 }
 
@@ -92,8 +98,17 @@ class Song {
 
 'Playlists
 
+class Playlist {
+    - library: LibraryStorage
+    - queue: MyQueue<int>
+    'check it exists first, then add to queue
+    + add(Song song)
+    + add(int trackingNumber)
+    + remove(Song song)
+    + get(int trackingNumber)
+}
 class PlaylistManager {
-    - playlists: Map<String, Playlist>
+    - playlists: MyHashMap<String, Playlist>
 }
 
 @enduml
