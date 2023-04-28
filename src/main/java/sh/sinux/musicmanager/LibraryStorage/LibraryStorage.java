@@ -18,7 +18,7 @@ public interface LibraryStorage {
      */
     void update(Song song);
     Song get(int trackNumber);
-    Song findOneByTitle(String title);
-    Song findOneByAlbum(String album);
-    Song findOneByArtist(String artist);
+    Song[] searchByTitle(String title);
+    Song[] searchByAlbum(String album);
+    Song[] searchByArtist(String artist);
 }
