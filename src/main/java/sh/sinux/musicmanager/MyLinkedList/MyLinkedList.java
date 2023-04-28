@@ -1,4 +1,4 @@
-package sh.sinux.musicmanager.LinkedList;
+package sh.sinux.musicmanager.MyLinkedList;
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
