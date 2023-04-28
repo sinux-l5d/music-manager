@@ -62,6 +62,25 @@ public class Song implements Comparable<Song> {
         return title.compareTo(other.title);
     }
 
+    @Override
+    public int hashCode() {
+        // Unkown behaviour if we change the values of a song after it has been added to a hashmap
+        return title.hashCode() + artist.hashCode() + album.hashCode() + genre.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null)
+            return false;
+        if (!(other instanceof Song))
+            return false;
+        Song otherSong = (Song) other;
+        return title.equals(otherSong.title)
+                && artist.equals(otherSong.artist)
+                && album.equals(otherSong.album)
+                && genre.equals(otherSong.genre);
+    }
+
     /// Getters ///
 
     public int getTrackNumber() { return trackNumber; }
