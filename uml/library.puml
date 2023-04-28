@@ -9,6 +9,7 @@ LibraryStorageCommon ..|> LibraryStorage
 'use MyHashMap
 Playlist "*" --* "*" PlaylistManager
 Playlist - Song
+MyQueue "1" --o Playlist
 'LibraryStorage "1" -o Playlist
 
 LibraryStorageHashMap ..|> LibraryStorage
@@ -49,11 +50,12 @@ class LibraryStorageCommon <<Proxy>> <<Singleton>>
 interface LibraryStorage {
     + void add(Song song)
     + void remove(Song song)
-    + Song get(int trackingNumber)
-    + void update(Song song)
-    + void search(int id)
-    + void search(String title)
-    + void search(String artist)
+    + Song get(int trackNumber)
+    + int size()
+    + Song[] getAll()
+    + Song[] search(int id)
+    + Song[] search(String title)
+    + Song[] search(String artist)
 }
 
 'Linked list
@@ -86,29 +88,38 @@ class MyHashMap<K extends int, V extends Song> {
 'Song
 
 class Song {
+    - {static} int NEXT_TRACK_NUMBER
     - title: String
     - artist: String
     - album: String
     - genre: String
-    - trackingNumber: int
+    - trackNumber: int
     - playCount: int
     - rating: int
-    + Song(String title, String artist, String album, String genre, int trackingNumber)
+    + Song(String title, String artist, String album, String genre)
+    + Song(String songString)
+    - Song(int trackNumber, String title, String artist, String album, String genre, int playCount, float rating)
+    'trackNumber|album|artist|genre|title|playCount|rating
+    + String toString()
 }
 
 'Playlists
 
 class Playlist {
     - library: LibraryStorage
-    - queue: MyQueue<int>
     'check it exists first, then add to queue
     + add(Song song)
-    + add(int trackingNumber)
+    + add(int trackNumber)
     + remove(Song song)
-    + get(int trackingNumber)
+    + get(int trackNumber)
 }
 class PlaylistManager {
     - playlists: MyHashMap<String, Playlist>
+}
+
+'Queue
+
+interface MyQueue<T extends int> {
 }
 
 @enduml
