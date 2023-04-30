@@ -1,10 +1,10 @@
 package sh.sinux.musicmanager.MyQueue;
 
-public class MyQueue <E> {
+public class MyQueue <T> {
     // Pointer to the first element in the queue
-    private Node<E> first;
+    private Node<T> first;
     // Pointer to the last element in the queue
-    private Node<E> last;
+    private Node<T> last;
 
     // How many elements are in the queue
     // Increase this when an element is added.
@@ -16,7 +16,7 @@ public class MyQueue <E> {
         first = null;
         last = null;
     }
-
+    //return the size of number of element inserted
     public int size(){
         return numElements;
     }
@@ -26,9 +26,9 @@ public class MyQueue <E> {
     {
         return first == null;
     }
-
-    public void enqueue(E element){
-        Node<E> newNode = new Node(element);
+    //insert element into the queue
+    public void enqueue(T element){
+        Node<T> newNode = new Node(element);
         // Check if the queue currently has any elements in it
         // If not, set it as the first and last element in the list
         if(isEmpty()){
@@ -43,14 +43,14 @@ public class MyQueue <E> {
         }
         numElements++;
     }
-
-    public E dequeue(){
+    //remove first element in the list
+    public T dequeue(){
         // If the queue is empty, throw an exception
         if(isEmpty()){
             throw new QueueEmptyException("Queue is empty.");
         }else{
             // Get the data within the element currently at start of queue
-            E data = first.data;
+            T data = first.data;
             // Chop the current first element off the queue
             first = first.next;
             // Decrease number of elements in queue
@@ -65,7 +65,7 @@ public class MyQueue <E> {
         }
     }
 
-    public E peek(){
+    public T peek(){
         // If the queue is empty, throw an exception
         if(isEmpty()){
             throw new QueueEmptyException("Queue is empty.");
