@@ -96,6 +96,34 @@ public class MyHashMap<K, V> {
         return get(key) != null;
     }
 
+    public K[] keySet() {
+        K[] keys = (K[]) new Object[size];
+        int index = 0;
+        for (MyLinkedList<Entry<K, V>> list : data) {
+            if (list != null) {
+                for (Entry<K, V> entry : list) {
+                    keys[index] = entry.getKey();
+                    index++;
+                }
+            }
+        }
+        return keys;
+    }
+
+    public V[] values() {
+        V[] values = (V[]) new Object[size];
+        int index = 0;
+        for (MyLinkedList<Entry<K, V>> list : data) {
+            if (list != null) {
+                for (Entry<K, V> entry : list) {
+                    values[index] = entry.getValue();
+                    index++;
+                }
+            }
+        }
+        return values;
+    }
+
 
     public boolean remove(K key) {
         int hash = Math.abs(key.hashCode());
