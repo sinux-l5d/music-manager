@@ -131,7 +131,7 @@ public class MyLinkedList<T> implements Iterable<T>{
         // We need to track the NEXT element in the list
         private Node<T> next;
 
-            public MyLinkedListIterator(){
+        public MyLinkedListIterator(){
             next = (Node<T>) first;
             lastReturned = null;
             nextIndex = 0;
