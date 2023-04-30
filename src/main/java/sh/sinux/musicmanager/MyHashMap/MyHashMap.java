@@ -92,6 +92,43 @@ public class MyHashMap<K, V> {
         return value == null ? defaultValue : value;
     }
 
+    public boolean containsKey(K key) {
+        return get(key) != null;
+    }
+
+
+    public boolean remove(K key) {
+        int hash = Math.abs(key.hashCode());
+        int destinationIndex = hash % data.length;
+        if (data[destinationIndex] != null) {
+            for (Entry<K, V> currentEntry : data[destinationIndex]) {
+                if (currentEntry.key.equals(key)) {
+                    data[destinationIndex].remove(currentEntry);
+                    size--;
+                    if (data[destinationIndex].isEmpty()) {
+                        data[destinationIndex] = null;
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{ ");
+        for (MyLinkedList<Entry<K, V>> list : data) {
+            if (list != null) {
+                for (Entry<K, V> entry : list) {
+                    sb.append(entry.key).append(": ").append(entry.value).append(", ");
+                }
+            }
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+
     /**
      * Return the count of how many key/value pairs have been added to the map
      */

@@ -94,6 +94,42 @@ public class MyLinkedList<T> implements Iterable<T>{
             return current.data;
         }
     }
+
+    public boolean remove(T data){
+        if(isEmpty())
+            return false;
+        Node current = first;
+        while(current != null){
+            if(current.data.equals(data)){
+                if(current == first){
+                    first = first.next;
+
+                    if (first != null)
+                        first.prev = null;
+                    else
+                        last = null;
+                }
+                else if(current == last){
+                    last = last.prev;
+                    if (last != null)
+                        last.next = null;
+                    else
+                        first = null;
+                }
+                else{
+                    Node predecessor = current.prev;
+                    Node successor = current.next;
+                    predecessor.next = successor;
+                    successor.prev = predecessor;
+                }
+                size--;
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
     public int size(){
         return size;
     }
