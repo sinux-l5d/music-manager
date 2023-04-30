@@ -4,6 +4,7 @@ import sh.sinux.musicmanager.MyHashMap.MyHashMap;
 import sh.sinux.musicmanager.Song.Song;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class LibraryStorageHashMap implements LibraryStorage {
 
@@ -17,6 +18,7 @@ public class LibraryStorageHashMap implements LibraryStorage {
         library.add(theQuiet);
         library.add(hello);
         library.add(stiches);
+        library.add(talkMeDown);
 
         System.out.println("Searching for song with track number 1: " + library.get(1));
         System.out.println("Searching for song with track number 2: " + library.get(2));
@@ -25,14 +27,15 @@ public class LibraryStorageHashMap implements LibraryStorage {
         System.out.println("Removing song with track number 2");
         library.remove(2);
 
-        System.out.println("Searching for song Hello: " + Arrays.stream(library.searchByTitle("Hello")).map(Song::toString).reduce("", (a, b) -> a +", "+ b));
+        System.out.println("Searching for song Hello: " + Arrays.stream(library.searchByTitle("Hello")).map(Song::toString).collect(Collectors.joining(", ")));
+        System.out.println("Searching for song with artist Troye Sivan: " + Arrays.stream(library.searchByArtist("Troye Sivan")).map(Song::toString).collect(Collectors.joining(", ")));
 
 
     }
     private final MyHashMap<Integer, Song> libraryStorage;
 
     public LibraryStorageHashMap(){
-        libraryStorage = new MyHashMap<>();
+        libraryStorage = new MyHashMap<>(Integer.class, Song.class);
     }
 
     @Override

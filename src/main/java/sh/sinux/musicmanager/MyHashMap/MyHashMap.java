@@ -2,6 +2,8 @@ package sh.sinux.musicmanager.MyHashMap;
 
 import sh.sinux.musicmanager.MyLinkedList.MyLinkedList;
 
+import java.lang.reflect.Array;
+
 public class MyHashMap<K, V> {
     /**
      * the maximum number of linked lists in the array
@@ -17,8 +19,17 @@ public class MyHashMap<K, V> {
      * the array of linked lists that will store the key/value pairs
      */
     private MyLinkedList<Entry<K, V>>[] data;
+    private final Class<K> kClass;
+    private final Class<V> vClass;
 
-    public MyHashMap() {
+    /**
+     * Create a new hash map
+     * @param kClass The class of the keys to store, used to instantiate new arrays
+     * @param vClass The class of the values to store, used to instantiate new arrays
+     */
+    public MyHashMap(Class<K> kClass, Class<V> vClass) {
+        this.kClass = kClass;
+        this.vClass = vClass;
         data = new MyLinkedList[MAX_SLOTS];
         size = 0;
     }
@@ -97,7 +108,7 @@ public class MyHashMap<K, V> {
     }
 
     public K[] keySet() {
-        K[] keys = (K[]) new Object[size];
+        K[] keys = (K[]) Array.newInstance(kClass, size);
         int index = 0;
         for (MyLinkedList<Entry<K, V>> list : data) {
             if (list != null) {
@@ -111,7 +122,7 @@ public class MyHashMap<K, V> {
     }
 
     public V[] values() {
-        V[] values = (V[]) new Object[size];
+        V[] values = (V[]) Array.newInstance(vClass, size);
         int index = 0;
         for (MyLinkedList<Entry<K, V>> list : data) {
             if (list != null) {
