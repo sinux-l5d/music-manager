@@ -94,6 +94,7 @@ public class MyLinkedList<T> implements Iterable<T>{
             return current.data;
         }
     }
+
     public boolean remove(T data){
         if(isEmpty())
             return false;

@@ -81,6 +81,10 @@ public class Song implements Comparable<Song> {
                 && genre.equals(otherSong.genre);
     }
 
+    public String toString() {
+        return String.format("%s - %s", artist, title);
+    }
+
     /// Getters ///
 
     public int getTrackNumber() { return trackNumber; }
