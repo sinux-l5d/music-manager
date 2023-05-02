@@ -7,31 +7,6 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class LibraryStorageHashMap implements LibraryStorage {
-
-    public static void main(String[] args) {
-        LibraryStorageHashMap library = new LibraryStorageHashMap();
-        Song theQuiet = new Song("The Quiet", "Blue Neibourhoud", "Troye Sivan", "pop");
-        Song hello = new Song("Hello", "25", "Adele", "pop");
-        Song stiches = new Song("Stiches", "Handwritten", "Shawn Mendes", "pop");
-        Song talkMeDown = new Song("Talk Me Down", "Blue Neibourhoud", "Troye Sivan", "pop");
-
-        library.add(theQuiet);
-        library.add(hello);
-        library.add(stiches);
-        library.add(talkMeDown);
-
-        System.out.println("Searching for song with track number 1: " + library.get(1));
-        System.out.println("Searching for song with track number 2: " + library.get(2));
-        System.out.println("Searching for song with track number 3: " + library.get(3));
-
-        System.out.println("Removing song with track number 2");
-        library.remove(2);
-
-        System.out.println("Searching for song Hello: " + Arrays.stream(library.searchByTitle("Hello")).map(Song::toString).collect(Collectors.joining(", ")));
-        System.out.println("Searching for song with artist Troye Sivan: " + Arrays.stream(library.searchByArtist("Troye Sivan")).map(Song::toString).collect(Collectors.joining(", ")));
-
-
-    }
     private final MyHashMap<Integer, Song> libraryStorage;
 
     public LibraryStorageHashMap(){
