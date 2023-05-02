@@ -34,11 +34,6 @@ public class LibraryStorageLinkedList implements LibraryStorage {
     }
 
     @Override
-    public void update(Song song) {
-
-    }
-
-    @Override
     public Song get(int trackNumber) {
         for (Song song : songs) {
             if (song.getTrackNumber() == trackNumber) {

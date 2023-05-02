@@ -34,17 +34,6 @@ public class LibraryStorageHashMap implements LibraryStorage {
     }
 
     /**
-     * Updates the song in the library storage
-     * The track number is used to find the song to update
-     *
-     * @param song
-     */
-    @Override
-    public void update(Song song) {
-        libraryStorage.put(song.getTrackNumber(), song);
-    }
-
-    /**
      * Returns the song with the given track number
      * @param trackNumber The track number of the song to return
      * @return The song with the given track number or null if no song is found

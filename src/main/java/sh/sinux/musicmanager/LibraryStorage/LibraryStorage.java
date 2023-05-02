@@ -12,11 +12,6 @@ public interface LibraryStorage {
     void remove(Song song);
     void remove(int trackNumber);
 
-    /**
-     * Updates the song in the library storage
-     * The track number is used to find the song to update
-     */
-    void update(Song song);
     Song get(int trackNumber);
     Song[] searchByTitle(String title);
     Song[] searchByAlbum(String album);
