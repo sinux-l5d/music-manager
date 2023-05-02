@@ -1,6 +1,5 @@
-package sh.sinux.musicmanager.LibraryStorageLinkedList;
+package sh.sinux.musicmanager.LibraryStorage;
 
-import sh.sinux.musicmanager.LibraryStorage.LibraryStorage;
 import sh.sinux.musicmanager.MyLinkedList.MyLinkedList;
 import sh.sinux.musicmanager.Song.Song;
 
@@ -8,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryStorageLinkedList implements LibraryStorage {
-    MyLinkedList<Song> songs = new MyLinkedList<Song>();
+    MyLinkedList<Song> songs = new MyLinkedList<>();
 
     @Override
     public void add(Song song) {
