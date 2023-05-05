@@ -26,8 +26,8 @@ public class Musicmanager {
             "lib search title <title>\n" +
             "lib search artist <artist>\n" +
             "lib search album <album>\n" +
+            "lib remove \"<title>\" \"<artist>\"\n" +
             /*
-            "lib remove <title> <artist>\n" +
             "lib save <filename>\n" +
             */
             "help\n" +
