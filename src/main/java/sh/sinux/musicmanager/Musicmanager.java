@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Musicmanager {
-    public static boolean running = true;
+    private static boolean running = true;
     private static final String prompt = ">> ";
     private static final String libraryCommands = "Available commands:\n" +
             "lib add <title> <album> <artist> <genre>\n" +
@@ -27,11 +27,10 @@ public class Musicmanager {
             "lib search artist <artist>\n" +
             "lib search album <album>\n" +
             "lib remove \"<title>\" \"<artist>\"\n" +
-            /*
-            "lib save <filename>\n" +
-            */
+            "select <id-from-last-lib-search>\n" +
             "help\n" +
             "quit\n";
+    private static Song selected = null;
 
     public static void main(String[] args) {
         String sb = "Welcome to the Music Manager!\n" +
@@ -52,9 +51,18 @@ public class Musicmanager {
         }
     }
 
+    public static void stop() {
+        running = false;
+    }
+
+    public static void select(Song song) {
+        selected = song;
+    }
+
     public static String promptUser() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print(prompt);
+        var p = selected != null ? "(id:" + selected.getTrackNumber() + ") " + prompt : prompt;
+        System.out.print(p);
         return scanner.nextLine().trim();
     }
 

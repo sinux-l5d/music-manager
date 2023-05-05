@@ -22,6 +22,10 @@ public class CommandFactory {
             var split = cmd.split(" ");
             command = split[0] + " " + split[1];
             args = Arrays.copyOfRange(split, 2, split.length);
+        } else if (cmd.startsWith("select")) {
+            var split = cmd.split(" ");
+            command = split[0];
+            args = new String[]{split[1]};
         } else {
             command = cmd;
         }
@@ -32,9 +36,7 @@ public class CommandFactory {
             case "lib size" -> new SizeCommand(lib);
             case "lib search" -> new SearchCommand(lib, args);
             case "lib remove" -> new RemoveCommand(lib, args);
-            /*
-            case "lib save" -> new SaveCommand(lib);
-             */
+            case "select" -> new SelectCommand(args);
             case "help" -> new HelpCommand(helpstring);
             case "quit" -> new QuitCommand();
             default -> new InvalidCommand();

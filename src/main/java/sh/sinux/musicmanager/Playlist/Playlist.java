@@ -26,7 +26,7 @@ public class Playlist {
 
     /**
      * Add a track to the end of the playlist
-     * @param song The song to add
+     * @param song The song to add. Track number will be used.
      */
     public void add(Song song) {
         if (song == null) return;

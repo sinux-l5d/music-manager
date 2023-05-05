@@ -6,7 +6,7 @@ public class QuitCommand implements Command {
 
     @Override
     public String execute() {
-        Musicmanager.running = false;
+        Musicmanager.stop();
         return "Bye!";
     }
 }

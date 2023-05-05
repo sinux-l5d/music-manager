@@ -52,7 +52,7 @@ public class LibraryStorageLinkedList implements LibraryStorage {
     public Song[] searchByTitle(String title) {
         List<Song> matchingSongs = new ArrayList<>();
         for (Song song : songs) {
-            if (song.getTitle().equalsIgnoreCase(title)) {
+            if (song.getTitle().contains(title)) {
                 matchingSongs.add(song);
             }
         }
@@ -63,7 +63,7 @@ public class LibraryStorageLinkedList implements LibraryStorage {
     public Song[] searchByAlbum(String album) {
         List<Song> matchingSongs = new ArrayList<>();
         for (Song song : songs) {
-            if (song.getAlbum().equalsIgnoreCase(album)) {
+            if (song.getAlbum().contains(album)) {
                 matchingSongs.add(song);
             }
         }
@@ -74,7 +74,7 @@ public class LibraryStorageLinkedList implements LibraryStorage {
     public Song[] searchByArtist(String artist) {
         List<Song> matchingSongs = new ArrayList<>();
         for (Song song : songs) {
-            if (song.getArtist().equalsIgnoreCase(artist)) {
+            if (song.getArtist().contains(artist)) {
                 matchingSongs.add(song);
             }
         }
