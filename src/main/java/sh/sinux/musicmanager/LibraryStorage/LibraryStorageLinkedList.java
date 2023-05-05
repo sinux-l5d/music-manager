@@ -44,6 +44,11 @@ public class LibraryStorageLinkedList implements LibraryStorage {
     }
 
     @Override
+    public int size() {
+        return songs.size();
+    }
+
+    @Override
     public Song[] searchByTitle(String title) {
         List<Song> matchingSongs = new ArrayList<>();
         for (Song song : songs) {

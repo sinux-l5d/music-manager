@@ -7,12 +7,20 @@ public interface LibraryStorage {
 
     /**
      * Removes the song from the library storage
-     * @param song
+     * @param song Song to remove
      */
     void remove(Song song);
+    /**
+     * Removes the song from the library storage
+     * @param trackNumber Track number of the song to remove
+     */
     void remove(int trackNumber);
 
     Song get(int trackNumber);
+
+    String toString();
+    int size();
+
     Song[] searchByTitle(String title);
     Song[] searchByAlbum(String album);
     Song[] searchByArtist(String artist);

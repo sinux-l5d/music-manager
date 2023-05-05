@@ -7,10 +7,17 @@ import java.util.Arrays;
 public class LibraryStorageCommon implements LibraryStorage {
     private final LibraryStorage linkedListLibraryStorage;
     private final LibraryStorage hashMapLibraryStorage;
+    private static LibraryStorageCommon instance;
 
-    public LibraryStorageCommon(){
+    private LibraryStorageCommon(){
         linkedListLibraryStorage = new LibraryStorageLinkedList();
         hashMapLibraryStorage = new LibraryStorageHashMap();
+    }
+
+    public static LibraryStorageCommon getInstance(){
+        if (instance == null)
+            instance = new LibraryStorageCommon();
+        return instance;
     }
 
     @Override
@@ -78,5 +85,20 @@ public class LibraryStorageCommon implements LibraryStorage {
         } else {
             throw new RuntimeException("Inconsistent library storage");
         }
+    }
+
+    public int size() throws RuntimeException {
+        var s1 = linkedListLibraryStorage.size();
+        var s2 = hashMapLibraryStorage.size();
+        if (s1 == s2) {
+            return s1;
+        } else {
+            throw new RuntimeException("Inconsistent library storage");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return hashMapLibraryStorage.toString();
     }
 }

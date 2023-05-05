@@ -43,6 +43,16 @@ public class LibraryStorageHashMap implements LibraryStorage {
         return libraryStorage.get(trackNumber);
     }
 
+    @Override
+    public String toString() {
+        return Arrays.stream(libraryStorage.values()).map(Song::toString).collect(Collectors.joining("\n"));
+    }
+
+    @Override
+    public int size() {
+        return libraryStorage.size();
+    }
+
     /**
      * Returns songs with the given title
      * String.contains() is used to find songs with the given title
@@ -74,7 +84,7 @@ public class LibraryStorageHashMap implements LibraryStorage {
     /**
      * Generic search method
      * @param match lambda expression that takes a song and the query, and returns true if the song matches the query
-     * @return
+     * @return A list of song matching the criteria
      */
     private Song[] search(SearchLambda match) {
         var songs = new Song[libraryStorage.size()];
