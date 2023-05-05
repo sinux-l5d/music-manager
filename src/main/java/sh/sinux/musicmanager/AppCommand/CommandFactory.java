@@ -30,9 +30,9 @@ public class CommandFactory {
             case "lib add" -> new AddCommand(lib, args);
             case "lib list" -> new ListCommand(lib, args);
             case "lib size" -> new SizeCommand(lib);
+            case "lib search" -> new SearchCommand(lib, args);
             /*
             case "lib remove" -> new RemoveCommand(lib);
-            case "lib search" -> new SearchCommand(lib);
             case "lib save" -> new SaveCommand(lib);
              */
             case "help" -> new HelpCommand(helpstring);

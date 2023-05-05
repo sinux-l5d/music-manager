@@ -23,11 +23,11 @@ public class Musicmanager {
             "lib add <title> <album> <artist> <genre>\n" +
             "lib list\n" +
             "lib size\n" +
+            "lib search title <title>\n" +
+            "lib search artist <artist>\n" +
+            "lib search album <album>\n" +
             /*
             "lib remove <title> <artist>\n" +
-            "lib search <title>\n" +
-            "lib search <artist>\n" +
-            "lib search <album>\n" +
             "lib save <filename>\n" +
             */
             "help\n" +
