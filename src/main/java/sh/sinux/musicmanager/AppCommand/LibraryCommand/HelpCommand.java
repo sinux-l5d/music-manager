@@ -1,4 +1,6 @@
-package sh.sinux.musicmanager.AppCommand;
+package sh.sinux.musicmanager.AppCommand.LibraryCommand;
+
+import sh.sinux.musicmanager.AppCommand.Command;
 
 public class HelpCommand implements Command {
     private final String helpstring;

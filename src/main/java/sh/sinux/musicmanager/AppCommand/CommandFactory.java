@@ -1,5 +1,6 @@
 package sh.sinux.musicmanager.AppCommand;
 
+import sh.sinux.musicmanager.AppCommand.LibraryCommand.*;
 import sh.sinux.musicmanager.LibraryStorage.LibraryStorage;
 
 import java.util.Arrays;

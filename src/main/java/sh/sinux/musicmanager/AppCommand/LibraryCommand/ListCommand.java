@@ -1,5 +1,6 @@
-package sh.sinux.musicmanager.AppCommand;
+package sh.sinux.musicmanager.AppCommand.LibraryCommand;
 
+import sh.sinux.musicmanager.AppCommand.Command;
 import sh.sinux.musicmanager.LibraryStorage.LibraryStorage;
 
 public class ListCommand implements Command {
