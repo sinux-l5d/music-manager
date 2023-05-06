@@ -1,6 +1,7 @@
 package sh.sinux.musicmanager.AppCommand;
 
 import sh.sinux.musicmanager.AppCommand.LibraryCommand.*;
+import sh.sinux.musicmanager.AppCommand.PlaylistCommand.*;
 import sh.sinux.musicmanager.LibraryStorage.LibraryStorage;
 
 import java.util.Arrays;
@@ -19,7 +20,7 @@ public class CommandFactory {
         var command = "";
         String[] args = new String[0];
 
-        if (cmd.startsWith("lib ")) {
+        if (cmd.startsWith("lib ") || cmd.startsWith("pl")) {
             var split = cmd.split(" ");
             command = split[0] + " " + split[1];
             args = Arrays.copyOfRange(split, 2, split.length);
@@ -37,6 +38,12 @@ public class CommandFactory {
             case "lib size" -> new SizeCommand(lib);
             case "lib search" -> new SearchCommand(lib, args);
             case "lib remove" -> new RemoveCommand(lib, args);
+
+            case "pl create" -> new CreateCommand(lib, args);
+            case "pl list" -> new ListPlaylistCommand();
+            case "pl add" -> new AddPlaylistCommand(args);
+            case "pl show" -> new ShowCommand(args);
+
             case "select" -> new SelectCommand(args);
             case "help" -> new HelpCommand(helpstring);
             case "quit" -> new QuitCommand();

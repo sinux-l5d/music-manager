@@ -27,9 +27,15 @@ public class Musicmanager {
             "lib search artist <artist>\n" +
             "lib search album <album>\n" +
             "lib remove \"<title>\" \"<artist>\"\n" +
+            "\n" +
+            "pl create <name>\n" +
+            "pl list\n" +
+            "pl add <playlist-id>\n" +
+            "pl show <playlist-id>\n" +
+            "\n" +
             "select <id-from-last-lib-search>\n" +
             "help\n" +
-            "quit\n";
+            "quit";
     private static Song selected = null;
 
     public static void main(String[] args) {
@@ -47,7 +53,7 @@ public class Musicmanager {
         while(running) {
             txt = promptUser();
             var command = cmdFactory.getCommand(txt);
-            System.out.println(command.execute());
+            System.out.println(command.execute() + "\n");
         }
     }
 
@@ -57,6 +63,10 @@ public class Musicmanager {
 
     public static void select(Song song) {
         selected = song;
+    }
+
+    public static Song getSelected() {
+        return selected;
     }
 
     public static String promptUser() {
