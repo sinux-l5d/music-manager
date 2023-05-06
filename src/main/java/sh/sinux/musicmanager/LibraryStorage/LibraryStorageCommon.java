@@ -3,10 +3,11 @@ package sh.sinux.musicmanager.LibraryStorage;
 import sh.sinux.musicmanager.Song.Song;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class LibraryStorageCommon implements LibraryStorage {
-    private final LibraryStorage linkedListLibraryStorage;
-    private final LibraryStorage hashMapLibraryStorage;
+    private final LibraryStorageLinkedList linkedListLibraryStorage;
+    private final LibraryStorageHashMap hashMapLibraryStorage;
     private static LibraryStorageCommon instance;
 
     private LibraryStorageCommon(){
@@ -29,7 +30,7 @@ public class LibraryStorageCommon implements LibraryStorage {
     /**
      * Removes the song from the library storage
      *
-     * @param song
+     * @param song The song to remove
      */
     @Override
     public void remove(Song song) {
@@ -101,5 +102,10 @@ public class LibraryStorageCommon implements LibraryStorage {
     @Override
     public String toString() {
         return linkedListLibraryStorage.toString();
+    }
+
+    @Override
+    public String toString(Comparator<Song> comparator) {
+        return linkedListLibraryStorage.toString(comparator);
     }
 }

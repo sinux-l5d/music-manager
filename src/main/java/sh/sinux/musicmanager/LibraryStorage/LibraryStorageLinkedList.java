@@ -2,6 +2,7 @@ package sh.sinux.musicmanager.LibraryStorage;
 
 import sh.sinux.musicmanager.MyLinkedList.MyLinkedList;
 import sh.sinux.musicmanager.Song.Song;
+import sh.sinux.musicmanager.Song.comparators.TrackNumberComparator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -149,6 +150,25 @@ public class LibraryStorageLinkedList implements LibraryStorage {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    /**
+     * Sorts the songs using a custom comparator (using selection sort)
+     * Note that it sort in place, so the original list will be modified
+     * After, it puts the list back to its trackNumber order
+     *
+     * @param comparator The comparator to use for sorting
+     * @return the string representation of the sorted list
+     */
+    public String toString(Comparator<Song> comparator) {
+        selectionSort(comparator);
+
+        var res = toString();
+
+        if (!(comparator instanceof TrackNumberComparator))
+            selectionSort(new TrackNumberComparator());
+
+        return res;
     }
 
 }
