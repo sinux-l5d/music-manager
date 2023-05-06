@@ -58,4 +58,8 @@ public class MyQueue <T> {
         }
         return queue.get(0);
     }
+
+    public String toString() {
+        return queue.toString();
+    }
 }

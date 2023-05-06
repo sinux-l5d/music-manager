@@ -4,14 +4,22 @@ import sh.sinux.musicmanager.LibraryStorage.LibraryStorage;
 import sh.sinux.musicmanager.MyQueue.MyQueue;
 import sh.sinux.musicmanager.Song.Song;
 
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class Playlist {
+    private static int NEXT_ID = 0;
     private final LibraryStorage libraryStorage;
     private MyQueue<Integer> playlist;
+    private int id;
     private String name;
 
     public Playlist(LibraryStorage libraryStorage, String name) {
         this.libraryStorage = libraryStorage;
         this.name = name;
+        this.id = NEXT_ID++;
         playlist = new MyQueue<>();
     }
 
@@ -78,4 +86,31 @@ public class Playlist {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String show() {
+        // get all Ids from the queue
+        var ids = new ArrayList<Integer>();
+        var first = playlist.peek();
+        do {
+            var id = playlist.dequeue();
+            ids.add(id);
+            playlist.enqueue(id);
+        } while (!Objects.equals(playlist.peek(), first));
+
+        // print all songs in the playlist
+        return "Playlist \"" + name + "\"\n" + IntStream.range(0, ids.size())
+                .mapToObj(i -> (i + 1) + ". " + libraryStorage.get(ids.get(i)).toString())
+                .collect(Collectors.joining("\n"));
+    }
+
+    public String toString() {
+        return (id + 1) + ". " + name + " (" + playlist.size() + " songs)";
+    }
 }
