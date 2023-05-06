@@ -48,7 +48,7 @@ public class LibraryStorageCommon implements LibraryStorage {
     public Song get(int trackNumber) throws RuntimeException {
         var s1 = linkedListLibraryStorage.get(trackNumber);
         var s2 = hashMapLibraryStorage.get(trackNumber);
-        if (s1 == s2) {
+        if (s1.equals(s2)) {
             return s1;
         } else {
             throw new RuntimeException("Inconsistent library storage");
@@ -59,7 +59,7 @@ public class LibraryStorageCommon implements LibraryStorage {
     public Song[] searchByTitle(String title) {
         var s1 = linkedListLibraryStorage.searchByTitle(title);
         var s2 = hashMapLibraryStorage.searchByTitle(title);
-        if (Arrays.equals(s1, s2)) {
+        if (arraySameSongs(s1, s2)) {
             return s1;
         } else {
             throw new RuntimeException("Inconsistent library storage");
@@ -70,7 +70,7 @@ public class LibraryStorageCommon implements LibraryStorage {
     public Song[] searchByAlbum(String album) {
         var s1 = linkedListLibraryStorage.searchByAlbum(album);
         var s2 = hashMapLibraryStorage.searchByAlbum(album);
-        if (Arrays.equals(s1, s2)) {
+        if (arraySameSongs(s1, s2)) {
             return s1;
         } else {
             throw new RuntimeException("Inconsistent library storage");
@@ -82,11 +82,30 @@ public class LibraryStorageCommon implements LibraryStorage {
         var s1 = linkedListLibraryStorage.searchByArtist(artist);
         var s2 = hashMapLibraryStorage.searchByArtist(artist);
         // TODO: don't use Arrays.equals, what if it's not the same order?
-        if (Arrays.equals(s1, s2)) {
+        if (arraySameSongs(s1, s2)) {
             return s1;
         } else {
             throw new RuntimeException("Inconsistent library storage");
         }
+    }
+
+    /**
+     * Whether the two arrays contain the same songs, even in different order
+     *
+     * @param s1 The first array
+     * @param s2 The second array
+     * @return Whether the two arrays contain the same songs
+     */
+    private boolean arraySameSongs(Song[] s1, Song[] s2) {
+        if (s1.length != s2.length) {
+            return false;
+        }
+        for (var song : s1) {
+            if (!Arrays.asList(s2).contains(song)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public int size() throws RuntimeException {
