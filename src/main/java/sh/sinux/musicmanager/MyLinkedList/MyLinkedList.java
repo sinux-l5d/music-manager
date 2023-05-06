@@ -12,6 +12,7 @@ public class MyLinkedList<T> implements Iterable<T>{
     public MyLinkedList(){
         first = null;
         last = null;
+        size = 0;
     }
 
     public boolean isEmpty()
@@ -132,6 +133,23 @@ public class MyLinkedList<T> implements Iterable<T>{
 
     public int size(){
         return size;
+    }
+    public T set(int pos, T data) {
+        // Check if the position is within the valid range of the list
+        if (pos < 0 || pos >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        // Loop through the list until you reach the desired position
+        Node<T> current = first;
+        for (int i = 0; i < pos; i++) {
+            current = current.next;
+        }
+        // Store the data of the current node in a temporary variable (old data)
+        T temp = current.data;
+        // Set the data of the current node to the new data
+        current.data = data;
+        return temp;
     }
 
     public String toString(){
