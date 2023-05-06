@@ -43,6 +43,8 @@ public class CommandFactory {
             case "pl list" -> new ListPlaylistCommand();
             case "pl add" -> new AddPlaylistCommand(args);
             case "pl show" -> new ShowCommand(args);
+            case "pl rmsong" -> new RemoveSongFromPlaylistCommand(args);
+            //case "pl remove" -> new RemovePlaylistCommand(args);
 
             case "select" -> new SelectCommand(args);
             case "help" -> new HelpCommand(helpstring);

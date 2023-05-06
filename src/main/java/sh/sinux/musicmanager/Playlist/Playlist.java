@@ -94,20 +94,47 @@ public class Playlist {
         return id;
     }
 
+    public Song get(int position) {
+        if (position < 0 || position >= playlist.size()) return null;
+        var temp = new MyQueue<Integer>();
+        Song song = null;
+        while (!playlist.isEmpty()) {
+            var track = playlist.dequeue();
+            if (position == 0) {
+                // If track don't exist anymore, remove it and we will return null
+                if (exists(track)) {
+                    song = libraryStorage.get(track);
+                    // don't forget to enqueue the track back
+                    temp.enqueue(track);
+                }
+            } else {
+                temp.enqueue(track);
+            }
+            position--;
+        }
+        playlist = temp;
+        return song;
+    }
+
     public String show() {
         // get all Ids from the queue
         var ids = new ArrayList<Integer>();
-        var first = playlist.peek();
-        do {
+        var temp = new MyQueue<Integer>();
+        while (!playlist.isEmpty()) {
             var id = playlist.dequeue();
+            if (!exists(id)) continue;
             ids.add(id);
-            playlist.enqueue(id);
-        } while (!Objects.equals(playlist.peek(), first));
+            temp.enqueue(id);
+        }
+        playlist = temp;
 
         // print all songs in the playlist
         return "Playlist \"" + name + "\"\n" + IntStream.range(0, ids.size())
                 .mapToObj(i -> (i + 1) + ". " + libraryStorage.get(ids.get(i)).toString())
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.collectingAndThen(
+                        Collectors.joining("\n"),
+                        res -> res.isEmpty() ? "...is empty :(" : res)
+                );
     }
 
     public String toString() {

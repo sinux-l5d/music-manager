@@ -32,6 +32,8 @@ public class Musicmanager {
             "pl list\n" +
             "pl add <playlist-id>\n" +
             "pl show <playlist-id>\n" +
+            "pl rmsong <playlist-id> <song-position>\n" +
+            //"pl remove <playlist-id>\n" +
             "\n" +
             "select <id-from-last-lib-search>\n" +
             "help\n" +

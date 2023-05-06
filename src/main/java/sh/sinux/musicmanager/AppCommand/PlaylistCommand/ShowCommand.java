@@ -12,6 +12,10 @@ public class ShowCommand implements Command {
     @Override
     public String execute() {
         if (args.length != 1) return "Invalid number of arguments.";
-        return Playlists.playlists.get(Integer.parseInt(args[0]) - 1).show();
+        try {
+            return Playlists.playlists.get(Integer.parseInt(args[0]) - 1).show();
+        } catch (NumberFormatException e) {
+            return "Invalid playlist id.";
+        }
     }
 }
