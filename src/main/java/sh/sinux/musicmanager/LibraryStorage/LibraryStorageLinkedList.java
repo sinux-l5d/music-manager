@@ -144,40 +144,4 @@ public class LibraryStorageLinkedList implements LibraryStorage {
         }
     }
 
-    public static void main(String[] args) {
-        LibraryStorageLinkedList library = new LibraryStorageLinkedList();
-
-        // Add some songs to the library
-        library.add(new Song("Song A", "Album 2", "Artist 1", "Pop"));
-        library.add(new Song("Song B", "Album 1", "Artist 1", "Pop"));
-        library.add(new Song("Song D", "Album 1", "Artist 3", "Jazz1"));
-        library.add(new Song("Song D", "Album 1", "Artist 3", "Jazz1"));
-        library.add(new Song("Song c", "Album 3", "Artist 1", "Jazz1"));
-        library.add(new Song("Song D", "Album 3", "Artist 1", "Jazz4"));
-
-        // Display unsorted library
-        System.out.println("Unsorted library:");
-        displayLibrary(library);
-
-        // Sort the library using the AlbumComparator
-        Comparator<Song> albumComparator = new AlbumComparator();
-        Comparator<Song> ratingComparator = new RatingComparator();
-        Comparator<Song> genre = new GenreComparator();
-
-        library.selectionSort(albumComparator);
-        System.out.println("Sorted library:(album)");
-        displayLibrary(library);
-        library.selectionSort(genre);
-        System.out.println("Sorted library:(genre)");
-        displayLibrary(library);
-
-    }
-
-    private static void displayLibrary(LibraryStorageLinkedList library) {
-        for (int i = 0; i < library.songs.size(); i++) {
-            Song song = library.songs.get(i);
-            System.out.printf("%d. %s - %s - %s - %s\n", i + 1, song.getTitle(), song.getAlbum(), song.getArtist(), song.getGenre());
-        }
-    }
-
 }
