@@ -19,25 +19,28 @@ import java.util.Scanner;
 public class Musicmanager {
     private static boolean running = true;
     private static final String prompt = ">> ";
-    private static final String libraryCommands = "Available commands:\n" +
-            "lib add <title> <album> <artist> <genre>\n" +
-            "lib list\n" +
-            "lib size\n" +
-            "lib search title <title>\n" +
-            "lib search artist <artist>\n" +
-            "lib search album <album>\n" +
-            "lib remove \"<title>\" \"<artist>\"\n" +
-            "\n" +
-            "pl create <name>\n" +
-            "pl list\n" +
-            "pl add <playlist-id>\n" +
-            "pl show <playlist-id>\n" +
-            "pl rmsong <playlist-id> <song-position>\n" +
-            "pl remove <playlist-id>\n" +
-            "\n" +
-            "select <id-from-last-lib-search>\n" +
-            "help\n" +
-            "quit";
+    private static final String libraryCommands = """
+            Available commands:
+            lib add <title> <album> <artist> <genre>
+            lib list
+            lib list <title|artist|album|genre>
+            lib size
+            lib search title <title>
+            lib search artist <artist>
+            lib search album <album>
+            lib remove "<title>" "<artist>"
+
+            pl create <name>
+            pl list
+            pl add <playlist-id>
+            pl show <playlist-id>
+            pl rmsong <playlist-id> <song-position>
+            pl remove <playlist-id>
+            pl rename <playlist-id> <new-name>
+
+            select <id-from-last-lib-search>
+            help
+            quit""";
     private static Song selected = null;
 
     public static void main(String[] args) {
