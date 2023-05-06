@@ -81,4 +81,14 @@ public class LibraryStorageLinkedList implements LibraryStorage {
         return matchingSongs.toArray(new Song[matchingSongs.size()]);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Song song : songs) {
+            sb.append(song.toString());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
 }

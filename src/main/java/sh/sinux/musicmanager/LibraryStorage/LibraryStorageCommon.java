@@ -80,6 +80,7 @@ public class LibraryStorageCommon implements LibraryStorage {
     public Song[] searchByArtist(String artist) {
         var s1 = linkedListLibraryStorage.searchByArtist(artist);
         var s2 = hashMapLibraryStorage.searchByArtist(artist);
+        // TODO: don't use Arrays.equals, what if it's not the same order?
         if (Arrays.equals(s1, s2)) {
             return s1;
         } else {
@@ -99,6 +100,6 @@ public class LibraryStorageCommon implements LibraryStorage {
 
     @Override
     public String toString() {
-        return hashMapLibraryStorage.toString();
+        return linkedListLibraryStorage.toString();
     }
 }
