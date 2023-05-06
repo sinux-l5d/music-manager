@@ -1,2 +1,4 @@
 * text=auto
+*.mm text
+*.java text
 *.puml text

@@ -21,7 +21,7 @@ public class Musicmanager {
     private static final String prompt = ">> ";
     private static final String libraryCommands = """
             Available commands:
-            lib add <title> <album> <artist> <genre>
+            lib add "<title>" "<album>" "<artist>" "<genre>"
             lib list
             lib list <title|artist|album|genre>
             lib size
@@ -49,17 +49,20 @@ public class Musicmanager {
                 Arrays.stream(findMMFiles()).map(File::getName).reduce((a, b) -> a + "\n" + b).orElse("No files found.");
         System.out.println(sb);
 
-        String txt = promptUser();
-        var lib = loadLibrary(new File(txt));
+        String filepath = promptUser();
+        var lib = loadLibrary(new File(filepath));
 
         System.out.println(libraryCommands);
         var cmdFactory = new CommandFactory(lib, libraryCommands);
 
+        String txt;
         while(running) {
             txt = promptUser();
             var command = cmdFactory.getCommand(txt);
             System.out.println(command.execute() + "\n");
         }
+
+        writeLibrary(lib, filepath);
     }
 
     public static void stop() {
@@ -101,6 +104,21 @@ public class Musicmanager {
         }
 
         return lib;
+    }
+
+    public static void writeLibrary(LibraryStorageCommon lib, String filepath) {
+        try (var f = new FileWriter(filepath)) {
+            Arrays.stream(lib.searchByTitle("")).map(Song::format).forEach(s -> {
+                try {
+                    f.write(s + "\n");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            System.err.println("Error writing file: " + e.getMessage());
+            System.exit(1);
+        }
     }
 
    public static void generateTestFile()  {
