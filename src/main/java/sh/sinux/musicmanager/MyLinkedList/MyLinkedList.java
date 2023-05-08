@@ -23,11 +23,18 @@ public class MyLinkedList<T> implements Iterable<T>{
         size = 0;
     }
 
+    /**
+     * Checks if the list is empty
+     * @return true if the list is empty, false otherwise
+     */
     public boolean isEmpty()
     {
         return first == null;
     }
 
+    /**
+     * Adds an element to the end of the list
+     */
     public void add(T data){
         Node<T> newNode = new Node<>(data);
         if(isEmpty()){
@@ -41,6 +48,11 @@ public class MyLinkedList<T> implements Iterable<T>{
         }
         size++;
     }
+
+    /**
+     * Adds an element to the beginning of the list
+     * @param data
+     */
     public void addFirst(T data){
         Node<T> newNode = new Node<>(data);
         if(isEmpty()){
@@ -54,6 +66,11 @@ public class MyLinkedList<T> implements Iterable<T>{
         }
         size++;
     }
+    /**
+     * Adds an element to the list at the specified position
+     * @param pos the position to add the element at
+     * @param data the data to add
+     */
     public void add(int pos, T data){
         if(pos > size || pos < 0){
             throw new IndexOutOfBoundsException();
@@ -79,6 +96,12 @@ public class MyLinkedList<T> implements Iterable<T>{
             size++;
         }
     }
+
+    /**
+     * Gets element at the specified position
+     * @param pos the position to get the element from
+     * @return the element at the specified position
+     */
     public T get(int pos){
         // If the list is empty, or the position supplied is outside the range
         if(isEmpty() || pos >= size || pos < 0){
@@ -99,11 +122,16 @@ public class MyLinkedList<T> implements Iterable<T>{
             for(int i = 0; i < pos; i++){
                 current = current.next;
             }
-            // Return the data stored within the node at that position
+
             return current.data;
         }
     }
 
+    /**
+     * Removes an element from the list
+     * @param data the element to remove
+     * @return true if the element was removed, false otherwise
+     */
     public boolean remove(T data){
         if(isEmpty())
             return false;
@@ -139,9 +167,20 @@ public class MyLinkedList<T> implements Iterable<T>{
         return false;
     }
 
+    /**
+     * Gets the size of the list
+     * @return the size of the list
+     */
     public int size(){
         return size;
     }
+
+    /**
+     * Updates the data at the specified position
+     * @param pos the position to update the data at
+     * @param data the new data
+     * @return the old data that was replaced
+     */
     public T set(int pos, T data) {
         // Check if the position is within the valid range of the list
         if (pos < 0 || pos >= size) {
@@ -160,6 +199,10 @@ public class MyLinkedList<T> implements Iterable<T>{
         return temp;
     }
 
+    /**
+     * Displays the list in a readable format (one element per line)
+     * @return String the list in a readable format
+     */
     public String toString(){
         StringBuilder sb = new StringBuilder();
         Node<T> current = first;
@@ -170,7 +213,11 @@ public class MyLinkedList<T> implements Iterable<T>{
         }
         return sb.toString();
     }
-
+    /**
+     * Returns an iterator over elements of type {@code T}.
+     *
+     * @return an Iterator.
+     */
     @Override
     public Iterator<T> iterator() {
         return new MyLinkedListIterator();
@@ -188,10 +235,18 @@ public class MyLinkedList<T> implements Iterable<T>{
             this.data = data;
         }
 
+        /**
+         * Checks if there is a next element in the list
+         * @return true if there is a next element, false otherwise
+         */
         public boolean hasNext(){
             return next != null;
         }
 
+        /**
+         * Checks if there is a previous element in the list
+         * @return true if there is a previous element, false otherwise
+         */
         public boolean hasPrev(){
             return prev != null;
         }
@@ -211,6 +266,11 @@ public class MyLinkedList<T> implements Iterable<T>{
         }
 
         // Provide the index of the next element in the iterator
+
+        /**
+         * Gets the index of the next element in the iterator
+         * @return the index of the next element in the iterator
+         */
         @Override
         public int nextIndex()
         {
@@ -220,38 +280,40 @@ public class MyLinkedList<T> implements Iterable<T>{
         @Override
         // Provide the index of the element we just returned in the iterator
         // This will be -1 if we haven't move the iterator from the start of the list
+        /**
+         * Gets the index of the previous element in the iterator
+         * @return the index of the previous element in the iterator
+         */
         public int previousIndex()
         {
             return nextIndex-1;
         }
 
-        // Check if there's another element after the one we're currently on
+        /**
+         * Checks if there is another element after the one we're currently on
+         * @return true if there is another element after the one we're currently on, false otherwise
+         */
         @Override
         public boolean hasNext()
         {
-            // If the position we're at is below the size, then
-            // we still have information left in the list
             return nextIndex < size;
         }
-        // Check if there's an element BEFORE the one we're currently on
+
+        /**
+         * Checks if there is an element before the one we're currently on
+         * @return true if there is an element before the one we're currently on, false otherwise
+         */
         @Override
         public boolean hasPrevious(){
-            // if the position we're at is above 0, then there is a node before this one
             return nextIndex > 0;
         }
 
-        // Return the next element in the list
-        // Firstly, confirm there is another element in the list (in case the
-        // calling code did not check this first). If no further data exists, throw an exception
-
-        // If there are elements left in the list, then move the lastReturned pointer to the
-        // current "next" element
-
-        // Once that is done, we move our next pointer onto the following element in the list
-        // and increase the nextIndex value (i.e. increasing our position count within the list)
-
-        // Lastly, we return the data we retrieved in step one (i.e. what's within lastReturned)
-        // This method returns an Object because the Iterator interface defines it as an Object
+        /**
+         * Gets the next element in the list
+         *
+         * @throws NoSuchElementException if there is no next element
+         * @return the next element in the list
+         */
         @Override
         public T next(){
             // Check there is still data left in the list
@@ -269,6 +331,12 @@ public class MyLinkedList<T> implements Iterable<T>{
             return lastReturned.data;
         }
 
+        /**
+         * Gets the previous element in the list
+         *
+         * @throws NoSuchElementException if there is no previous element
+         * @return the previous element in the list
+         */
         @Override
         public T previous()
         {
@@ -297,21 +365,32 @@ public class MyLinkedList<T> implements Iterable<T>{
             return lastReturned.data;
         }
 
-        // Methods for amending the list via the iterator
-        // As these are marked as OPTIONAL in the API, we don't have to write code
-        // for them but we do have to include them
+        /**
+         * Remove is not implemented by this iterator
+         * @throws UnsupportedOperationException prompt the user that this operation is not supported
+         */
         @Override
         public void remove()
         {
             throw new UnsupportedOperationException("Not supported.");
         }
 
+        /**
+         * Set is not implemented by this iterator
+         * @throws UnsupportedOperationException prompt the user that this operation is not supported
+         * @param e the element to set
+         */
         @Override
         public void set(Object e)
         {
             throw new UnsupportedOperationException("Not supported.");
         }
 
+        /**
+         * Add is not implemented by this iterator
+         * @throws UnsupportedOperationException prompt the user that this operation is not supported
+         * @param e the element to add
+         */
         @Override
         public void add(Object e)
         {
