@@ -2,9 +2,7 @@ package sh.sinux.musicmanager.LibraryStorage;
 
 import sh.sinux.musicmanager.MyLinkedList.MyLinkedList;
 import sh.sinux.musicmanager.Song.Song;
-import sh.sinux.musicmanager.Song.comparators.AlbumComparator;
-import sh.sinux.musicmanager.Song.comparators.GenreComparator;
-import sh.sinux.musicmanager.Song.comparators.RatingComparator;
+import sh.sinux.musicmanager.Song.comparators.TrackNumberComparator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -49,11 +47,6 @@ public class LibraryStorageLinkedList implements LibraryStorage {
         }
     }
 
-    @Override
-    public void update(Song song) {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
     /**
      * gets a song from the library by track number
      * @param trackNumber the track number of the song to get
@@ -69,6 +62,11 @@ public class LibraryStorageLinkedList implements LibraryStorage {
         return null;
     }
 
+    @Override
+    public int size() {
+        return songs.size();
+    }
+
     /**
      * get songs from the library by title
      * @param title the title of the songs to get
@@ -78,7 +76,7 @@ public class LibraryStorageLinkedList implements LibraryStorage {
     public Song[] searchByTitle(String title) {
         List<Song> matchingSongs = new ArrayList<>();
         for (Song song : songs) {
-            if (song.getTitle().equalsIgnoreCase(title)) {
+            if (song.getTitle().contains(title)) {
                 matchingSongs.add(song);
             }
         }
@@ -94,7 +92,7 @@ public class LibraryStorageLinkedList implements LibraryStorage {
     public Song[] searchByAlbum(String album) {
         List<Song> matchingSongs = new ArrayList<>();
         for (Song song : songs) {
-            if (song.getAlbum().equalsIgnoreCase(album)) {
+            if (song.getAlbum().contains(album)) {
                 matchingSongs.add(song);
             }
         }
@@ -109,7 +107,7 @@ public class LibraryStorageLinkedList implements LibraryStorage {
     public Song[] searchByArtist(String artist) {
         List<Song> matchingSongs = new ArrayList<>();
         for (Song song : songs) {
-            if (song.getArtist().equalsIgnoreCase(artist)) {
+            if (song.getArtist().contains(artist)) {
                 matchingSongs.add(song);
             }
         }
@@ -131,7 +129,7 @@ public class LibraryStorageLinkedList implements LibraryStorage {
                 //smallestSong which has the smallest Unicode value
                 Song smallestSong = songs.get(minIndex);
                 //using the comparator to compare the current song with the smallest song
-                if (comparator.compare(songs.get(j), songs.get(minIndex)) < 0) {
+                if (comparator.compare(currentSong, smallestSong) < 0) {
                     minIndex = j;
                 }
             }
@@ -142,6 +140,35 @@ public class LibraryStorageLinkedList implements LibraryStorage {
                 songs.set(minIndex, temp);
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Song song : songs) {
+            sb.append(song.toString());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Sorts the songs using a custom comparator (using selection sort)
+     * Note that it sort in place, so the original list will be modified
+     * After, it puts the list back to its trackNumber order
+     *
+     * @param comparator The comparator to use for sorting
+     * @return the string representation of the sorted list
+     */
+    public String toString(Comparator<Song> comparator) {
+        selectionSort(comparator);
+
+        var res = toString();
+
+        if (!(comparator instanceof TrackNumberComparator))
+            selectionSort(new TrackNumberComparator());
+
+        return res;
     }
 
 }

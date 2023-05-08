@@ -152,6 +152,16 @@ public class MyLinkedList<T> implements Iterable<T>{
         return temp;
     }
 
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        Node current = first;
+        while(current != null){
+            sb.append(current.data.toString());
+            sb.append("\n");
+            current = current.next;
+        }
+        return sb.toString();
+    }
 
     @Override
     public Iterator iterator() {

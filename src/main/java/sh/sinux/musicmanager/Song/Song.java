@@ -82,7 +82,7 @@ public class Song implements Comparable<Song> {
     }
 
     public String toString() {
-        return String.format("%s - %s", artist, title);
+        return String.format("%s [%s] by %s", title, album, artist);
     }
 
     /// Getters ///
@@ -100,4 +100,18 @@ public class Song implements Comparable<Song> {
     public int getPlayCount() { return playCount; }
 
     public float getRating() { return rating; }
+
+    public static String format(Song song) {
+        return String.join("|", song.title, song.album, song.artist, song.genre, String.valueOf(song.playCount), String.valueOf(song.rating));
+    }
+
+    public static Song parse(String line) {
+        String[] parts = line.split("\\|");
+        if (parts.length != 6)
+            throw new IllegalArgumentException("Invalid song format");
+        var song = new Song(parts[0], parts[1], parts[2], parts[3]);
+        song.playCount = Integer.parseInt(parts[4]);
+        song.rating = Float.parseFloat(parts[5]);
+        return song;
+    }
 }

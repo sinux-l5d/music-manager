@@ -4,6 +4,7 @@ import sh.sinux.musicmanager.MyHashMap.MyHashMap;
 import sh.sinux.musicmanager.Song.Song;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class LibraryStorageHashMap implements LibraryStorage {
@@ -21,7 +22,7 @@ public class LibraryStorageHashMap implements LibraryStorage {
     /**
      * Removes the song from the library storage
      *
-     * @param song
+     * @param song The song to remove
      */
     @Override
     public void remove(Song song) {
@@ -34,17 +35,6 @@ public class LibraryStorageHashMap implements LibraryStorage {
     }
 
     /**
-     * Updates the song in the library storage
-     * The track number is used to find the song to update
-     *
-     * @param song
-     */
-    @Override
-    public void update(Song song) {
-        libraryStorage.put(song.getTrackNumber(), song);
-    }
-
-    /**
      * Returns the song with the given track number
      * @param trackNumber The track number of the song to return
      * @return The song with the given track number or null if no song is found
@@ -52,6 +42,21 @@ public class LibraryStorageHashMap implements LibraryStorage {
     @Override
     public Song get(int trackNumber) {
         return libraryStorage.get(trackNumber);
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.stream(libraryStorage.values()).map(Song::toString).collect(Collectors.joining("\n"));
+    }
+
+    @Override
+    public String toString(Comparator<Song> comparator) {
+        return Arrays.stream(libraryStorage.values()).sorted(comparator).map(Song::toString).collect(Collectors.joining("\n"));
+    }
+
+    @Override
+    public int size() {
+        return libraryStorage.size();
     }
 
     /**
@@ -85,7 +90,7 @@ public class LibraryStorageHashMap implements LibraryStorage {
     /**
      * Generic search method
      * @param match lambda expression that takes a song and the query, and returns true if the song matches the query
-     * @return
+     * @return A list of song matching the criteria
      */
     private Song[] search(SearchLambda match) {
         var songs = new Song[libraryStorage.size()];

@@ -4,12 +4,12 @@ import sh.sinux.musicmanager.Song.Song;
 
 import java.util.Comparator;
 
-public class RatingComparator implements Comparator<Song> {
+public class TrackNumberComparator implements Comparator<Song> {
     /**
-     * Compares two songs by Rating
+     * Compares two songs by their track number
      */
     @Override
     public int compare(Song song1, Song song2) {
-        return Float.compare(song1.getRating(), song2.getRating());
+        return Integer.compare(song1.getTrackNumber(), song2.getTrackNumber());
     }
 }
