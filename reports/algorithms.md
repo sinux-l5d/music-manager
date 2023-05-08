@@ -1,4 +1,4 @@
-# Searching and Sorting Algorithms
+# Searching and Sorting Algorithms (Zi)
 ## Context - Searching Algorithms
 There are 3 types of searching algorithms that we have studied which are Linear Search, Binary Search and Jump Search.
 Requirement : Binary Search and Jump Search require the data to be sorted in order to work. Whereas Linear Search does not.
