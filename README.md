@@ -270,7 +270,7 @@ And here is few more example of the actual timings of the Linear Search algorith
 | 5 | 60500 | 0.060 |
 
 **Merge Sort**
-![](reports/sortAlgoActualTiming.png)
+![](reports/mergeSortActualTime.png)
 The diagram above shows the actual timings of the (Merge and Selection) Sort and the code snippet of the algorithm.
 I implemented both Merge and Selection sort for it to be easier to compare the actual timings.
 Here is the actual timings of the Merge Sort and Selection Sort algorithm:
