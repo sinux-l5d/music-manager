@@ -36,7 +36,21 @@ For timing the operations, I've decided to use the benchmark framework JMH in Av
 
 #### Benchmark
 
-During the benchmark, I have a OutOfMemoryError when trying to add elements for the linked list. Note that apparently, it works fine in the setup script
+During the benchmark, I have a OutOfMemoryError when trying to add elements for the linked list. It used several Gb of memory on my computer.
+
+I although have a benchmark for the get method, which get all the SIZE elements (500 in my case) previously inserted in the setup method.
+
+```
+Result "sh.sinux.musicmanager.BenchmarkMyLinkedList.getBenchmark":
+  127435.518 ±(99.9%) 2452.389 ns/op [Average]
+  (min, avg, max) = (126873.370, 127435.518, 128339.854), stdev = 636.878
+  CI (99.9%): [124983.129, 129887.907] (assumes normal distribution)
+```
+
+```
+Benchmark                           Mode  Cnt       Score      Error  Units
+BenchmarkMyLinkedList.getBenchmark  avgt    5  127435.518 ± 2452.389  ns/op
+```
 
 #### Strengths
 #### Weaknesses
