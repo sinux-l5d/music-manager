@@ -11,7 +11,18 @@
         <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>sh.sinux.musicmanager.Musicmanager</exec.mainClass>
     </properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>1.36</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>1.36</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
