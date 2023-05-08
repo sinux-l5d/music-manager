@@ -25,7 +25,7 @@ public class MyLinkedList<T> implements Iterable<T>{
     }
 
     public void add(T data){
-        Node newNode = new Node(data);
+        Node<T> newNode = new Node<>(data);
         if(isEmpty()){
             first = newNode;
             last = newNode;
@@ -38,7 +38,7 @@ public class MyLinkedList<T> implements Iterable<T>{
         size++;
     }
     public void addFirst(T data){
-        Node newNode = new Node(data);
+        Node<T> newNode = new Node<>(data);
         if(isEmpty()){
             first = newNode;
             last = newNode;
@@ -56,17 +56,17 @@ public class MyLinkedList<T> implements Iterable<T>{
         }else if(pos == 0){
             addFirst(data);
         }else{
-            Node newNode = new Node(data);
+            Node<T> newNode = new Node<>(data);
             if(pos == size){
                 last.next = newNode;
                 newNode.prev = last;
                 last = newNode;
             }else{
-                Node current = first;
+                Node<T> current = first;
                 for(int i = 0; i < pos; i++){
                     current = current.next;
                 }
-                Node predecessor = current.prev;
+                Node<T> predecessor = current.prev;
                 newNode.prev = predecessor;
                 predecessor.next = newNode;
                 newNode.next = current;
@@ -103,7 +103,7 @@ public class MyLinkedList<T> implements Iterable<T>{
     public boolean remove(T data){
         if(isEmpty())
             return false;
-        Node current = first;
+        Node<T> current = first;
         while(current != null){
             if(current.data.equals(data)){
                 if(current == first){
@@ -122,8 +122,8 @@ public class MyLinkedList<T> implements Iterable<T>{
                         first = null;
                 }
                 else{
-                    Node predecessor = current.prev;
-                    Node successor = current.next;
+                    Node<T> predecessor = current.prev;
+                    Node<T> successor = current.next;
                     predecessor.next = successor;
                     successor.prev = predecessor;
                 }
@@ -158,8 +158,8 @@ public class MyLinkedList<T> implements Iterable<T>{
 
 
     @Override
-    public Iterator iterator() {
-        return new MyLinkedListIterator<T>();
+    public Iterator<T> iterator() {
+        return new MyLinkedListIterator();
     }
 
 
@@ -182,7 +182,7 @@ public class MyLinkedList<T> implements Iterable<T>{
             return prev != null;
         }
     }
-    private class MyLinkedListIterator<T> implements ListIterator<T>{
+    private class MyLinkedListIterator implements ListIterator<T> {
         // Track what number element is next
         private int nextIndex;
         // Track what element we last returned
@@ -191,7 +191,7 @@ public class MyLinkedList<T> implements Iterable<T>{
         private Node<T> next;
 
         public MyLinkedListIterator(){
-            next = (Node<T>) first;
+            next = first;
             lastReturned = null;
             nextIndex = 0;
         }
@@ -268,9 +268,9 @@ public class MyLinkedList<T> implements Iterable<T>{
             if(next == null){
                 // If we've moved past the end of the list, point our lastReturned
                 // variable to the final element (i.e. point it to the end)
-                lastReturned = (Node<T>) last;
+                lastReturned = last;
                 // Move our pointer within the list back a slot
-                next = (Node<T>) last;
+                next = last;
             }else{
                 // If we're not at the end, point it at the link before the current next one
                 lastReturned = next.prev;
