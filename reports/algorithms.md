@@ -46,32 +46,72 @@ How merge sort works is by dividing the data into left and right until the data 
 Then it will merge the data back together by comparing the left and right data (sort them) and then merge them back together.
 
 ## Algorithm performance
-**Algorithm performance - Linear Search**
 ![](searchAlgo.png)
 
-###big O notation - time complexity
+**Algorithm performance - Linear Search** 
+- time complexity
+
 The big O notation for Linear Search is O(n)
 The calculation big 0 in worst case would be the following:
-inputs = 1,000,000
-iterations = 1,000,000
-if the input is 1,000,000 then the worst case would be 1,000,000 iterations.
-###big O notation - space complexity
+- inputs = 1,000,000
+- iterations = 1,000,000 (worst case)
+if the input is 1,000,000 then the worst case would be 1,000,000 iterations to search the target value.
+
+
+- space complexity
 In the image above, it creates an arraylist to store any matching data.
 In worst case scenario, all matching data will be stored in the arraylist.
 Lastly Array.toArrays() will be called to convert the arraylist to an array that will also cost space O(n).
 space complexity = would be O(n) + O(n) = O(n)
+  
+![](sortAlgo.png)
+
+**Algorithm performance - Merge Sort**
+- time complexity
+
+The big O notation for Merge Sort is O(n log n)
+The calculation big 0 in worst case would be the following:
+- inputs = 1,000,000
+- iterations = 1,000,000 * log2(1,000,000) (worst case)
+If the input is 1,000,000, then the worst case would be 1,000,000 * log2(1,000,000) iterations, which is approximately 19,931,569 iterations.
+- space complexity
+The space complexity of Merge Sort is O(n log n) as it requires extra space to store the data. 
+In the merge function, it creates a temporary array to store the data.
+This temporary array will be created for every iteration until the data is sorted.
+This is the reason why the space complexity is O(n log n).
+
 ### Actual timings
 **Linear Search**
 ![](searchAlgoActualTiming.png)
-The diagram above shows the actual timings of the Linear Search algorithm and the code snippet of the algorithm.
+The diagram above shows the actual timings of the Linear Search and the code snippet of the algorithm.
 And here is few more example of the actual timings of the Linear Search algorithm:
 | Num of runs | Actual Timing(ns) | Actual Timing(ms) |
 | -------- | -------- | -------- |
-| 1 | 1999400 | 2 |
-| 2 | 3673700 | 3.7 |
-| 3 | 3136600 | 3.1 |
-| 4 | 1946001 | 1.9 |
-| 5 | 2300000 | 2.3 |
+| 1 | 132199 | 0.132 |
+| 2 | 100100 | 0.100 |
+| 3 | 105399 | 0.105 |
+| 4 | 69400 | 0.069|
+| 5 | 60500 | 0.060 |
 
 **Merge Sort**
+![](sortAlgoActualTiming.png)
+The diagram above shows the actual timings of the (Merge and Selection) Sort and the code snippet of the algorithm.
+I implemented both Merge and Selection sort for it to be easier to compare the actual timings.
+Here is the actual timings of the Merge Sort and Selection Sort algorithm:
+| Merge Sort | - | - | Selection Sort | - | - |
+| Num of runs | Actual Timing(ns) | Actual Timing(ms) | Num of runs | Actual Timing(ns) | Actual Timing(ms) |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| 1 | 121001 | 0.121 | 1 | 245701 | 0.246 |
+| 2 | 179600 | 0.180 | 2 | 294001 | 0.294 |
+| 3 | 160300 | 0.160 | 3 | 236400 | 0.236 |
+| 4 | 81299 | 0.081 | 4 | 187001 | 0.187 |
+| 5 | 164100 | 0.164 | 5 | 223600 | 0.224 |
 
+
+When the dataset goes bigger the actual timings of the Merge Sort will be significantly faster than the Selection Sort.
+##Improvements
+    Linear Search
+The Linear Search algorithm can be improved by using the Binary Search algorithm. 
+But Binary Search requires the data to be sorted as it mentioned above. 
+So, the data will have to be sorted first before using the Binary Search algorithm. 
+By using the merge sort that we have implemented.

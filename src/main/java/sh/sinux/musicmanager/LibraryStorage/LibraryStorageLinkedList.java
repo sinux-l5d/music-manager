@@ -9,8 +9,10 @@ import java.util.Comparator;
 import java.util.List;
 
 public class LibraryStorageLinkedList implements LibraryStorage {
-    MyLinkedList<Song> songs = new MyLinkedList<>();
-
+    private final MyLinkedList<Song> songs;
+    public LibraryStorageLinkedList() {
+        songs = new MyLinkedList<>();
+    }
     /**
      * adds a song to the library
      * @param song the song to add
@@ -62,6 +64,10 @@ public class LibraryStorageLinkedList implements LibraryStorage {
         return null;
     }
 
+    /**
+     * gets the size of the library
+     * @return the size of the library
+     */
     @Override
     public int size() {
         return songs.size();
@@ -85,7 +91,7 @@ public class LibraryStorageLinkedList implements LibraryStorage {
 
     /**
      * get songs from the library by album
-     * @param album the title of the songs to get
+     * @param album the album of the songs to get
      * @return an array of songs with the given album
      */
     @Override
@@ -100,7 +106,7 @@ public class LibraryStorageLinkedList implements LibraryStorage {
     }
     /**
      * get songs from the library by artist
-     * @param artist the title of the songs to get
+     * @param artist the artist of the songs to get
      * @return an array of songs with the given artist
      */
     @Override
@@ -141,7 +147,82 @@ public class LibraryStorageLinkedList implements LibraryStorage {
             }
         }
     }
+    /**
+     * Merge sort algorithm to sort a list of Song objects.
+     * It takes a Comparator<Song> object to define the custom sorting order for the Song objects
+     * and recursively sorts the list using a divide and conquer approach.
+     *
+     * @param comparator The Comparator<Song> object to define the custom sorting order.
+     * @param leftPos The left position of the sublist to sort.
+     * @param rightPos The right position of the sublist to sort.
+     */
+    public void mergeSort(Comparator<Song> comparator, int leftPos, int rightPos) {
 
+        if (leftPos < rightPos) {
+            int middlePos = (leftPos + rightPos) / 2;
+            // This 2 lines of code is to divide the list into 2 parts until the list is divided into single elements
+            mergeSort(comparator, leftPos, middlePos);
+            mergeSort(comparator, middlePos + 1, rightPos);
+
+            // Merge the sorted sublists back into the original list
+            merge(comparator, leftPos, middlePos, rightPos);
+        }
+    }
+    /**
+     * Merging two sorted sublists back into the original list (one level back).
+     * It uses the provided Comparator<Song> object to compare the Song objects and determine their order.
+     *
+     * @param comparator The Comparator<Song> object to define the custom sorting order.
+     * @param left The left position of the sublist to merge.
+     * @param middle The middle position of the sublist to merge.
+     * @param right The right position of the sublist to merge.
+     *
+     */
+    private void merge(Comparator<Song> comparator, int left, int middle, int right) {
+        int leftSize = middle - left + 1;
+        int rightSize = right - middle;
+        // Fill temp arrays with the data from their side of the section
+        Song[] leftArray = new Song[leftSize];
+        Song[] rightArray = new Song[rightSize];
+        for (int i = 0; i < leftSize; i++) {
+            leftArray[i] = songs.get(left + i);
+        }
+        for (int i = 0; i < rightSize; i++) {
+            rightArray[i] = songs.get(middle + 1 + i);
+        }
+        // Track where we are in temp data
+        int leftIndex = 0;
+        int rightIndex = 0;
+        // Track where we are inserting into in main array
+        int mergedIndex = left;
+        while (leftIndex < leftSize && rightIndex < rightSize) {
+            // Compare the two objects using the comparator
+            if (comparator.compare(leftArray[leftIndex], rightArray[rightIndex]) <= 0) {
+                songs.set(mergedIndex, leftArray[leftIndex]);
+                leftIndex++;
+            } else {
+                songs.set(mergedIndex, rightArray[rightIndex]);
+                rightIndex++;
+            }
+            mergedIndex++;
+        }
+        //checking if there is any element left
+        while (leftIndex < leftSize) {
+            songs.set(mergedIndex, leftArray[leftIndex]);
+            leftIndex++;
+            mergedIndex++;
+        }
+        while (rightIndex < rightSize) {
+            songs.set(mergedIndex, rightArray[rightIndex]);
+            rightIndex++;
+            mergedIndex++;
+        }
+    }
+
+    /**
+     * Return a string formatted that contains all the songs in the library
+     *
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -170,28 +251,5 @@ public class LibraryStorageLinkedList implements LibraryStorage {
 
         return res;
     }
-    public static void main(String[] args) {
-        Song[] songs = new Song[]{
-                new Song("Bohemian Rhapsody", "A Night at the Opera", "Queen", "rock"),
-                new Song("Like a Rolling Stone", "Highway 61 Revisited", "Bob Dylan", "rock"),
-                new Song("Shape of You", "÷ (Divide)", "Ed Sheeran", "pop"),
-                new Song("Bad Guy", "When We All Fall Asleep, Where Do We Go?", "Billie Eilish", "pop"),
-                new Song("Uptown Funk", "Uptown Special", "Mark Ronson ft. Bruno Mars", "funk"),
-                new Song("Le vent nous portera", "Des visages des figures", "Noir Désir", "rock"),
-                new Song("La Bohème", "La Bohème", "Charles Aznavour", "chanson"),
-                new Song("Je t'aime... moi non plus", "Jane Birkin - Serge Gainsbourg", "Serge Gainsbourg & Jane Birkin", "chanson"),
-                new Song("Alors on danse", "Cheese", "Stromae", "electro"),
-                new Song("Formidable", "Racine Carrée", "Stromae", "pop"),
-        };
-        LibraryStorageCommon storage = LibraryStorageCommon.getInstance();
-        for (Song song : songs) {
-            storage.add(song);
-        }
-        System.out.println(storage.toString());
-        var startTime = System.nanoTime();
 
-        var endTime = System.nanoTime();
-
-        System.out.println("Time taken: " + (endTime - startTime) + "ns");
-    }
 }
