@@ -9,11 +9,11 @@ For timing the operations, I've decided to use the benchmark framework JMH in Av
 - `isEmpty()`: O(1)
 - `add(T data)`: O(1)
 - `addFirst(T data)`: O(1)
-- `add(int pos
+- `add(int pos, T data)`: O(n)
 - `get(int pos)`: O(n)
 - `remove(T data)`: O(n)
 - `size()`: O(1)
-- `set(int pos
+- `set(int pos, T data)`: O(n)
 - `toString()`: O(n)
 - `selectionSort(Comparator<T> comparator)`: O(n²) (to be moved to MyLinkedList)
 - `Node.*`: O(1), constant operations (getters and setters)
