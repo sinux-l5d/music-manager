@@ -1,8 +1,12 @@
 package sh.sinux.musicmanager.MyLinkedList;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
+
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
+@State(Scope.Benchmark)
 public class MyLinkedList<T> implements Iterable<T>{
 
     private Node<T> first;

@@ -1,16 +1,18 @@
 package sh.sinux.musicmanager;
 
 import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
+import org.openjdk.jmh.runner.options.Options;
+import org.openjdk.jmh.runner.options.OptionsBuilder;
 import sh.sinux.musicmanager.MyLinkedList.MyLinkedList;
 
-import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
 public class BenchmarkMyLinkedList {
-    private static final int SIZE = 1000;
+    private static final int SIZE = 500;
     private MyLinkedList<Integer> myLinkedList;
 
     @Setup
@@ -43,8 +45,12 @@ public class BenchmarkMyLinkedList {
         }
     }
 
-    public static void main(String[] args) throws RunnerException, IOException {
-        org.openjdk.jmh.Main.main(args);
+    public static void main(String[] args) throws RunnerException {
+        Options opt = new OptionsBuilder()
+                .include(BenchmarkMyLinkedList.class.getSimpleName())
+                .build();
+
+        new Runner(opt).run();
     }
 }
 

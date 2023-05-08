@@ -7,13 +7,12 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import sh.sinux.musicmanager.MyHashMap.MyHashMap;
 
-import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
 public class BenchmarkMyHashMap {
-    private static final int SIZE = 1000;
+    private static final int SIZE = 500;
     private MyHashMap<String, Integer> myHashMap;
 
     @Setup
@@ -48,7 +47,11 @@ public class BenchmarkMyHashMap {
         }
     }
 
-    public static void main(String[] args) throws RunnerException, IOException {
-        org.openjdk.jmh.Main.main(args);
+    public static void main(String[] args) throws RunnerException {
+        Options opt = new OptionsBuilder()
+                .include(BenchmarkMyHashMap.class.getSimpleName())
+                .build();
+
+        new Runner(opt).run();
     }
 }

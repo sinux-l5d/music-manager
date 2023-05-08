@@ -1,5 +1,7 @@
 ## Data Structure suitability (Simon)
 
+For timing the operations, I've decided to use the benchmark framework JMH in Average Time mode.
+
 ### Linked list
 
 #### Order of operation
@@ -34,6 +36,8 @@
 
 #### Benchmark
 
+During the benchmark, I have a OutOfMemoryError when trying to add elements for the linked list. Note that apparently, it works fine in the setup script
+
 #### Strengths
 #### Weaknesses
 
@@ -66,6 +70,28 @@
 - `Entry.*`: No extra data, constant data cost (getters and setters)
 
 #### Benchmark
+
+```
+Result "sh.sinux.musicmanager.BenchmarkMyHashMap.getBenchmark":
+  64790.654 ±(99.9%) 133.347 ns/op [Average]
+  (min, avg, max) = (64760.201, 64790.654, 64837.257), stdev = 34.630
+  CI (99.9%): [64657.307, 64924.001] (assumes normal distribution)
+
+```
+
+```
+Result "sh.sinux.musicmanager.BenchmarkMyHashMap.putBenchmark":
+  190903.060 ±(99.9%) 648.845 ns/op [Average]
+  (min, avg, max) = (190710.250, 190903.060, 191056.054), stdev = 168.503
+  CI (99.9%): [190254.215, 191551.905] (assumes normal distribution)
+```
+
+```
+Benchmark                        Mode  Cnt       Score     Error  Units
+BenchmarkMyHashMap.getBenchmark  avgt    5   64790.654 ± 133.347  ns/op
+BenchmarkMyHashMap.putBenchmark  avgt    5  190903.060 ± 648.845  ns/op
+```
+
 #### Strengths
 #### Weaknesses
 
