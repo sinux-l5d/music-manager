@@ -7,34 +7,40 @@ LibraryStorageCommon "1" *-- "1" LibraryStorageHashMap
 LibraryStorageCommon ..|> LibraryStorage
 
 'use MyHashMap
-Playlist "*" --* "*" PlaylistManager
+Playlist "*" --* "1" Playlists
 Playlist - Song
 MyQueue "1" --o Playlist
 'LibraryStorage "1" -o Playlist
 
 LibraryStorageHashMap ..|> LibraryStorage
 LibraryStorageHashMap --|> MyHashMap
+MyHashMap *-- MyLinkedList
+MyHashMap +-- Entry
 Song "*" o--- "1" LibraryStorageHashMap
 
 LibraryStorageLinkedList ..|> LibraryStorage
 LibraryStorageLinkedList --|> MyLinkedList
 Song "*" o--- "1" LibraryStorageLinkedList
 
-MyLinkedListIterator o- "1" MyLinkedList
 MyLinkedListIterator -+ MyLinkedList
-MyLinkedListIterator ..|> Iterator
+MyLinkedListIterator ..|> ListIterator
 MyLinkedList ..|> Iterable
+MyLinkedList +- Node
+MyLinkedListIterator *- "2" Node
 
 Comparable <|-- Song
 
-TitleComparator ..|> Comparator
-Song - TitleComparator
+NaturalOrderComparator ..|> Comparator
+Song - NaturalOrderComparator
 ArtistComparator ..|> Comparator
 Song - ArtistComparator
 AlbumComparator ..|> Comparator
 Song - AlbumComparator
 GenreComparator ..|> Comparator
 Song - GenreComparator
+TrackNumberComparator ..|> Comparator
+Song - TrackNumberComparator
+
 
 
 class Comparable<T extends Song> {
@@ -50,31 +56,43 @@ class LibraryStorageCommon <<Proxy>> <<Singleton>>
 interface LibraryStorage {
     + void add(Song song)
     + void remove(Song song)
+    + void remove(int trackNumber)
     + Song get(int trackNumber)
+    + String toString()
+    + String toString(Comparator<Song> comparator)
     + int size()
-    + Song[] getAll()
-    + Song[] search(int id)
-    + Song[] search(String title)
-    + Song[] search(String artist)
+    + Song[] searchByTitle(String title)
+    + Song[] searchByAlbum(String title)
+    + Song[] searchByArtist(String artist)
 }
 
 'Linked list
-class LibraryStorageLinkedList
-
 class MyLinkedList<T extends Song> {
+    - Node<T> first
+    - Node<T> last
+    - int size
     + MyLinkedList()
+    + void add(T data)
+    + void addFirst(T data)
+    + void add(int pos, T data)
+    + T get(int pos)
+    + boolean remove(T data)
+    + int size()
+    + T set(int pos, T data)
+    + String toString()
+    + Iterator<T> iterator()
 }
-
-class MyLinkedListIterator<T>
 
 interface Iterable<T> {
     + Iterator<T> iterator()
 }
 
-interface Iterator<T> {
+interface ListIterator<T> {
+    + int nextIndex()
+    + int previousIndex()
     + boolean hasNext()
+    + boolean hasPrevious()
     + T next()
-    + void remove()
 }
 
 'Hash map
@@ -82,7 +100,28 @@ interface Iterator<T> {
 class LibraryStorageHashMap
 
 class MyHashMap<K extends int, V extends Song> {
-    + MyHashMap()
+    - {static} int MAX_SLOTS = 10
+    - int size
+    - MyLinkedList<Entry<K, V>>[] data
+    + MyHashMap(Class<K> kClass, Class<V> vClass)
+    + put(K key, V value)
+    + V get(K key)
+    + V get(K key, V defaultValue)
+    + boolean containsKey(K key)
+    + K[] keySet()
+    + V[] values()
+    + boolean remove(K key)
+    + String toString()
+    + int size()
+}
+
+class Entry<K extends int, V extends Song> {
+    - key: K
+    - value: V
+    + Entry(K key, V value)
+    + K getKey()
+    + V getValue()
+    + V setValue(V value)
 }
 
 'Song
@@ -97,10 +136,14 @@ class Song {
     - playCount: int
     - rating: int
     + Song(String title, String artist, String album, String genre)
-    + Song(String songString)
     - Song(int trackNumber, String title, String artist, String album, String genre, int playCount, float rating)
-    'trackNumber|album|artist|genre|title|playCount|rating
+    + void incrementPlayCount()
+    + int compareTo(Song other)
+    + int hashCode()
+    + boolean equals(Object other)
     + String toString()
+    + {static} format(Song song)
+    + {static} parse(String songString)
 }
 
 'Playlists
@@ -113,8 +156,9 @@ class Playlist {
     + remove(Song song)
     + get(int trackNumber)
 }
-class PlaylistManager {
-    - playlists: MyHashMap<String, Playlist>
+
+class Playlists {
+    # playlists: MyHashMap<String, Playlist>
 }
 
 'Queue
