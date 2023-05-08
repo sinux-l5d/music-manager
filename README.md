@@ -10,6 +10,12 @@ It's written by Jay and myself.
 
 Built with [VHS <3](https://github.com/charmbracelet/vhs)
 
+## Library UML Diagram
+
+This doesn't include the classes for the app itself.
+
+![UML diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/sinux-l5d/music-manager/main/uml/library.puml&fmt=svg)
+
 ## Data Structure suitability (Simon)
 
 For timing the operations, I've decided to use the benchmark framework JMH in Average Time mode.
@@ -258,6 +264,7 @@ This is the reason why the space complexity is O(n log n).
 #### Actual timings
 
 **Linear Search**
+
 ![](reports/searchAlgoActualTiming.png)
 The diagram above shows the actual timings of the Linear Search and the code snippet of the algorithm.
 And here is few more example of the actual timings of the Linear Search algorithm:
@@ -270,6 +277,7 @@ And here is few more example of the actual timings of the Linear Search algorith
 | 5 | 60500 | 0.060 |
 
 **Merge Sort**
+
 ![](reports/mergeSortActualTime.png)
 The diagram above shows the actual timings of the (Merge and Selection) Sort and the code snippet of the algorithm.
 I implemented both Merge and Selection sort for it to be easier to compare the actual timings.
