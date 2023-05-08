@@ -1,9 +1,13 @@
 package sh.sinux.musicmanager.MyHashMap;
 
+import org.openjdk.jmh.annotations.Param;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
 import sh.sinux.musicmanager.MyLinkedList.MyLinkedList;
 
 import java.lang.reflect.Array;
 
+@State(Scope.Benchmark)
 public class MyHashMap<K, V> {
     /**
      * the maximum number of linked lists in the array
