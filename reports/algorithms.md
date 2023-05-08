@@ -100,9 +100,10 @@ And here is few more example of the actual timings of the Linear Search algorith
 The diagram above shows the actual timings of the (Merge and Selection) Sort and the code snippet of the algorithm.
 I implemented both Merge and Selection sort for it to be easier to compare the actual timings.
 Here is the actual timings of the Merge Sort and Selection Sort algorithm:
-| Merge Sort | - | - | Selection Sort | - | - |
-| Num of runs | Actual Timing(ns) | Actual Timing(ms) | Num of runs | Actual Timing(ns) | Actual Timing(ms) |
+
+| Merge Sort |  |  | Selection Sort |  |  |
 | -------- | -------- | -------- | -------- | -------- | -------- |
+| *Num of runs* | *Actual Timing(ns)* | *Actual Timing(ms)* | *Num of runs* | *Actual Timing(ns)* | *Actual Timing(ms)* |
 | 1 | 121001 | 0.121 | 1 | 245701 | 0.246 |
 | 2 | 179600 | 0.180 | 2 | 294001 | 0.294 |
 | 3 | 160300 | 0.160 | 3 | 236400 | 0.236 |
