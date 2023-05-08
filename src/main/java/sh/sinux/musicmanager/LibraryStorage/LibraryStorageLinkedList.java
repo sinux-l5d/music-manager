@@ -156,7 +156,7 @@ public class LibraryStorageLinkedList implements LibraryStorage {
      * @param leftPos The left position of the sublist to sort.
      * @param rightPos The right position of the sublist to sort.
      */
-    public void mergeSort(Comparator<Song> comparator, int leftPos, int rightPos) {
+    private void mergeSort(Comparator<Song> comparator, int leftPos, int rightPos) {
 
         if (leftPos < rightPos) {
             int middlePos = (leftPos + rightPos) / 2;
@@ -242,12 +242,12 @@ public class LibraryStorageLinkedList implements LibraryStorage {
      * @return the string representation of the sorted list
      */
     public String toString(Comparator<Song> comparator) {
-        selectionSort(comparator);
+        mergeSort(comparator, 0, songs.size() - 1);
 
         var res = toString();
 
         if (!(comparator instanceof TrackNumberComparator))
-            selectionSort(new TrackNumberComparator());
+            mergeSort(new TrackNumberComparator(), 0, songs.size() - 1);
 
         return res;
     }
