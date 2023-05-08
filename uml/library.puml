@@ -1,6 +1,8 @@
 @startuml
 skinparam linetype ortho
 
+hide empty members
+
 'Relationships
 LibraryStorageCommon "1" *-- "1" LibraryStorageLinkedList
 LibraryStorageCommon "1" *-- "1" LibraryStorageHashMap
