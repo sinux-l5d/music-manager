@@ -8,6 +8,10 @@ import java.util.Comparator;
  * @author Simon Leonard
  */
 public interface LibraryStorage {
+    /**
+     * Adds the song to the library storage
+     * @param song Song to add
+     */
     void add(Song song);
 
     /**
@@ -21,6 +25,11 @@ public interface LibraryStorage {
      */
     void remove(int trackNumber);
 
+    /**
+     * Gets a song from the library storage
+     * @param trackNumber Track number of the song to get
+     * @return Song with the given track number
+     */
     Song get(int trackNumber);
 
     String toString();
@@ -33,9 +42,34 @@ public interface LibraryStorage {
      * @return String representation of the library storage
      */
     String toString(Comparator<Song> comparator);
+
+    /**
+     * Gets the size of the library storage
+     * @return Size of the library storage
+     */
     int size();
 
+    /**
+     * Searches for songs with the given title
+     * use String.contains() to search
+     * @param title Title to search for
+     * @return Array of songs with the given title
+     */
     Song[] searchByTitle(String title);
+
+    /**
+     * Searches for songs with the given album
+     * use String.contains() to search
+     * @param album Album to search for
+     * @return Array of songs with the given album
+     */
     Song[] searchByAlbum(String album);
+
+    /**
+     * Searches for songs with the given artist
+     * use String.contains() to search
+     * @param artist Artist to search for
+     * @return Array of songs with the given artist
+     */
     Song[] searchByArtist(String artist);
 }

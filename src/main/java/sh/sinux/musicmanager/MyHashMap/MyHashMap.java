@@ -109,10 +109,19 @@ public class MyHashMap<K, V> {
         return value == null ? defaultValue : value;
     }
 
+    /**
+     * Check if a key exists in the hash map
+     * @param key
+     * @return
+     */
     public boolean containsKey(K key) {
         return get(key) != null;
     }
 
+    /**
+     * Get an array of all the keys in the hash map
+     * @return An array of all the keys in the hash map
+     */
     public K[] keySet() {
         K[] keys = (K[]) Array.newInstance(kClass, size);
         int index = 0;
@@ -127,6 +136,10 @@ public class MyHashMap<K, V> {
         return keys;
     }
 
+    /**
+     * Get an array of all the values in the hash map
+     * @return An array of all the values in the hash map
+     */
     public V[] values() {
         V[] values = (V[]) Array.newInstance(vClass, size);
         int index = 0;
@@ -142,6 +155,11 @@ public class MyHashMap<K, V> {
     }
 
 
+    /**
+     * Remove a key-value pair from the hash map
+     * @param key The key to remove
+     * @return True if the key was removed, false if the key didn't exist
+     */
     public boolean remove(K key) {
         int hash = Math.abs(key.hashCode());
         int destinationIndex = hash % data.length;
@@ -160,6 +178,11 @@ public class MyHashMap<K, V> {
         return false;
     }
 
+
+    /**
+     * Return a string representation of the hash map
+      * @return A string representation of the hash map
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{ ");
@@ -201,14 +224,26 @@ public class MyHashMap<K, V> {
             this.value = value;
         }
 
+        /**
+         * Get the key
+         * @return The key
+         */
         public K getKey() {
             return key;
         }
 
+        /**
+         * Get the value
+         * @return The value
+         */
         public V getValue() {
             return value;
         }
 
+        /**
+         * Set the value
+         * @param newValue The new value
+         */
         public void setValue(V newValue) {
             this.value = newValue;
         }

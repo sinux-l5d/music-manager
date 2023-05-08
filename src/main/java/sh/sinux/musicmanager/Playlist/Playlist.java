@@ -88,14 +88,27 @@ public class Playlist {
         this.name = name;
     }
 
+    /**
+     * Get the name of the playlist
+     * @return The name of the playlist
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Get the id of the playlist
+     * @return The id of the playlist
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Get a song from its position in the playlist
+     * @param position The position of the song in the playlist
+     * @return The song at the position, null if the song/position doesn't exist
+     */
     public Song get(int position) {
         if (position < 0 || position >= playlist.size()) return null;
         var temp = new MyQueue<Integer>();
@@ -118,6 +131,10 @@ public class Playlist {
         return song;
     }
 
+    /**
+     * Show the content of the playlist
+     * @return The content of the playlist
+     */
     public String show() {
         // get all Ids from the queue
         var ids = new ArrayList<Integer>();
@@ -139,6 +156,10 @@ public class Playlist {
                 );
     }
 
+    /**
+     * Show the representation of the playlist
+     * @return The representation of the playlist
+     */
     public String toString() {
         return (id + 1) + ". " + name + " (" + playlist.size() + " songs)";
     }
