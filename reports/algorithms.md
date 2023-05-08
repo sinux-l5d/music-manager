@@ -38,7 +38,8 @@ Because it pauses the current function and calls the function again and again un
 Code snippet of the recursive approach of Merge sort:
 There will be 2 functions which are mergeSort and merge.
 
-mergesort() - this function will be called recursively until the data is divided into single element.
+mergesort() - this function will be called recursively until the data is divided into single element. 
+
 merge() - this function will be called recursively until the data is sorted and then will merge the data back together.
 
 How merge sort works is by dividing the data into left and right until the data is divided into single element.
@@ -59,10 +60,18 @@ In the image above, it creates an arraylist to store any matching data.
 In worst case scenario, all matching data will be stored in the arraylist.
 Lastly Array.toArrays() will be called to convert the arraylist to an array that will also cost space O(n).
 space complexity = would be O(n) + O(n) = O(n)
+### Actual timings
+**Linear Search**
+![](searchAlgoActualTiming.png)
+The diagram above shows the actual timings of the Linear Search algorithm and the code snippet of the algorithm.
+And here is few more example of the actual timings of the Linear Search algorithm:
+| Num of runs | Actual Timing(ns) | Actual Timing(ms) |
+| -------- | -------- | -------- |
+| 1 | 1999400 | 2 |
+| 2 | 3673700 | 3.7 |
+| 3 | 3136600 | 3.1 |
+| 4 | 1946001 | 1.9 |
+| 5 | 2300000 | 2.3 |
 
-**Algorithm performance - Merge Sort**
+**Merge Sort**
 
-The data costs incurred by the algorithm (as you have coded it)
-Actual timings (from running your code) for the algorithm (as you have coded it)
-This should include a table showing the timings your code generated and a screenshot of the code running with timings displaying
-(it’s ok to reuse the screenshot from above if the pertinent information is visible in it, just remember to reference it here)

@@ -170,6 +170,28 @@ public class LibraryStorageLinkedList implements LibraryStorage {
 
         return res;
     }
+    public static void main(String[] args) {
+        Song[] songs = new Song[]{
+                new Song("Bohemian Rhapsody", "A Night at the Opera", "Queen", "rock"),
+                new Song("Like a Rolling Stone", "Highway 61 Revisited", "Bob Dylan", "rock"),
+                new Song("Shape of You", "÷ (Divide)", "Ed Sheeran", "pop"),
+                new Song("Bad Guy", "When We All Fall Asleep, Where Do We Go?", "Billie Eilish", "pop"),
+                new Song("Uptown Funk", "Uptown Special", "Mark Ronson ft. Bruno Mars", "funk"),
+                new Song("Le vent nous portera", "Des visages des figures", "Noir Désir", "rock"),
+                new Song("La Bohème", "La Bohème", "Charles Aznavour", "chanson"),
+                new Song("Je t'aime... moi non plus", "Jane Birkin - Serge Gainsbourg", "Serge Gainsbourg & Jane Birkin", "chanson"),
+                new Song("Alors on danse", "Cheese", "Stromae", "electro"),
+                new Song("Formidable", "Racine Carrée", "Stromae", "pop"),
+        };
+        LibraryStorageCommon storage = LibraryStorageCommon.getInstance();
+        for (Song song : songs) {
+            storage.add(song);
+        }
+        System.out.println(storage.toString());
+        var startTime = System.nanoTime();
 
+        var endTime = System.nanoTime();
 
+        System.out.println("Time taken: " + (endTime - startTime) + "ns");
+    }
 }
