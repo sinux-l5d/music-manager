@@ -1,5 +1,5 @@
-# Searching and Sorting Algorithms (Zi)
-## Context - Searching Algorithms
+## Searching and Sorting Algorithms (Zi)
+### Context - Searching Algorithms
 There are 3 types of searching algorithms that we have studied which are Linear Search, Binary Search and Jump Search.
 Requirement : Binary Search and Jump Search require the data to be sorted in order to work. Whereas Linear Search does not.
 
@@ -9,7 +9,7 @@ The reason for choosing this algorithm is that it is the simplest algorithm amon
 The best thing about linear search is it can deal with unsorted data and not even have to maintain the data in a sorted order.
 Also, maintaining the data in a sorted order is a very expensive operation.
 
-## Context - Sorting Algorithms
+### Context - Sorting Algorithms
 There are 4 types of sorting algorithms that we have studied which are Bubble Sort, Selection Sort, Merge Sort and Quick Sort.
 Merge sort and Quick sort are better option than Bubble sort and Selection sort as they have better time complexity.
 But when it comes to space complexity, Merge sort and Quick sort are not the best option as they require extra space to store the data.
@@ -27,7 +27,7 @@ If the space complexity is not the primary concern, Merge sort would be the best
 I initially choose Selection Sort. The reason why i change my mind is because the time complexity is better. Although, Selection Sort sorts in place and is lighter in memory consumption.
 
 
-## Algorithm explanation
+### Algorithm explanation
 **Searching algorithm - Linear Search**
 The implemnetation is very simple. It just loops through the data and checks if the data is equal to the target value.
 
@@ -47,7 +47,7 @@ merge() - this function will be called recursively until the data is sorted and 
 How merge sort works is by dividing the data into left and right until the data is divided into single element.
 Then it will merge the data back together by comparing the left and right data (sort them) and then merge them back together.
 
-## Algorithm performance
+### Algorithm performance
 ![](searchAlgo.png)
 
 **Algorithm performance - Linear Search** 
@@ -82,7 +82,8 @@ In the merge function, it creates a temporary array to store the data.
 This temporary array will be created for every iteration until the data is sorted.
 This is the reason why the space complexity is O(n log n).
 
-### Actual timings
+#### Actual timings
+
 **Linear Search**
 ![](searchAlgoActualTiming.png)
 The diagram above shows the actual timings of the Linear Search and the code snippet of the algorithm.
@@ -112,8 +113,8 @@ Here is the actual timings of the Merge Sort and Selection Sort algorithm:
 
 
 When the dataset goes bigger the actual timings of the Merge Sort will be significantly faster than the Selection Sort.
-##Improvements
-    Linear Search
+### Improvements
+
 The Linear Search algorithm can be improved by using the Binary Search algorithm. 
 But Binary Search requires the data to be sorted as it mentioned above. 
 So, the data will have to be sorted first before using the Binary Search algorithm. 
