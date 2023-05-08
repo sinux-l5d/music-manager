@@ -24,6 +24,8 @@ Merge Sort vs Quick Sort
 
 If the space complexity is not the primary concern, Merge sort would be the best option to sort the data.
 
+I initially choose Selection Sort. The reason why i change my mind is because the time complexity is better. Although, Selection Sort sorts in place and is lighter in memory consumption.
+
 
 ## Algorithm explanation
 **Searching algorithm - Linear Search**
