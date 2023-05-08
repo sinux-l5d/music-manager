@@ -7,6 +7,9 @@ import sh.sinux.musicmanager.Song.Song;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author Simon Leonard
+ */
 public class AddCommand implements Command {
     private final LibraryStorage lib;
     private final String[] args;

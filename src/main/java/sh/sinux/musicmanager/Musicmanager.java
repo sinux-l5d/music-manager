@@ -16,6 +16,10 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * @author Simon Leonard
+ * @author Zi Jie Lee
+ */
 public class Musicmanager {
     private static boolean running = true;
     private static final String prompt = ">> ";

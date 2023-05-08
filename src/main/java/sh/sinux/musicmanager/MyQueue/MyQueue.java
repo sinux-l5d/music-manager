@@ -2,6 +2,9 @@ package sh.sinux.musicmanager.MyQueue;
 
 import sh.sinux.musicmanager.MyLinkedList.MyLinkedList;
 
+/**
+ * @author Zi Jie Lee
+ */
 public class MyQueue <T> {
     private final MyLinkedList<T>queue;
     public MyQueue() {

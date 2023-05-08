@@ -2,6 +2,9 @@ package sh.sinux.musicmanager.AppCommand.PlaylistCommand;
 
 import sh.sinux.musicmanager.AppCommand.Command;
 
+/**
+ * @author Simon Leonard
+ */
 public class RemovePlaylistCommand implements Command {
     private final String[] args;
 

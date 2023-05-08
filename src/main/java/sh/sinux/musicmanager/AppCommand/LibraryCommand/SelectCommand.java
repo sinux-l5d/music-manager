@@ -3,6 +3,9 @@ package sh.sinux.musicmanager.AppCommand.LibraryCommand;
 import sh.sinux.musicmanager.AppCommand.Command;
 import sh.sinux.musicmanager.Musicmanager;
 
+/**
+ * @author Simon Leonard
+ */
 public class SelectCommand implements Command {
     private final String[] args;
 

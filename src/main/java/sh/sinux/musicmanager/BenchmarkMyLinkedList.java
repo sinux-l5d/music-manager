@@ -10,6 +10,9 @@ import sh.sinux.musicmanager.MyLinkedList.MyLinkedList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Simon Leonard
+ */
 @State(Scope.Benchmark)
 public class BenchmarkMyLinkedList {
     private static final int SIZE = 500;

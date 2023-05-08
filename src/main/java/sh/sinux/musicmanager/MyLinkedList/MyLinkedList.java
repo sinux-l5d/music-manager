@@ -6,6 +6,10 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
+/**
+ * @author Zi Jie Lee
+ */
+
 @State(Scope.Benchmark)
 public class MyLinkedList<T> implements Iterable<T>{
 
@@ -158,7 +162,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        Node current = first;
+        Node<T> current = first;
         while(current != null){
             sb.append(current.data.toString());
             sb.append("\n");

@@ -1,5 +1,8 @@
 package sh.sinux.musicmanager.Song;
 
+/**
+ * @author Simon Leonard
+ */
 public class Song implements Comparable<Song> {
     private static int NEXT_TRACK_NUMBER = 0;
     private int trackNumber;

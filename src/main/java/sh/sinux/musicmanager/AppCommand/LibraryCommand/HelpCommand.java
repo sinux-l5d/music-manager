@@ -2,6 +2,10 @@ package sh.sinux.musicmanager.AppCommand.LibraryCommand;
 
 import sh.sinux.musicmanager.AppCommand.Command;
 
+/**
+ * @author Simon Leonard
+ */
+
 public class HelpCommand implements Command {
     private final String helpstring;
     public HelpCommand(String helpstring) {

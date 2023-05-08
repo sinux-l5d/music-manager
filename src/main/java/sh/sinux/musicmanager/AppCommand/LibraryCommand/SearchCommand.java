@@ -7,6 +7,9 @@ import sh.sinux.musicmanager.Song.Song;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * @author Simon Leonard
+ */
 public class SearchCommand implements Command {
     private final LibraryStorage lib;
     private final String[] args;

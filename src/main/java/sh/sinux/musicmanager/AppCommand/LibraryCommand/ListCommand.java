@@ -7,6 +7,9 @@ import sh.sinux.musicmanager.Song.comparators.*;
 
 import java.util.Comparator;
 
+/**
+ * @author Simon Leonard
+ */
 public class ListCommand implements Command {
     private final LibraryStorage lib;
     private final String[] args;

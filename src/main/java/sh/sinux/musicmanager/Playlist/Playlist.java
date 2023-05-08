@@ -5,15 +5,17 @@ import sh.sinux.musicmanager.MyQueue.MyQueue;
 import sh.sinux.musicmanager.Song.Song;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * @author Simon Leonard
+ */
 public class Playlist {
     private static int NEXT_ID = 0;
     private final LibraryStorage libraryStorage;
     private MyQueue<Integer> playlist;
-    private int id;
+    private final int id;
     private String name;
 
     public Playlist(LibraryStorage libraryStorage, String name) {

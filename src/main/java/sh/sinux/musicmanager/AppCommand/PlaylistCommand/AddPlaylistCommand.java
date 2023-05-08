@@ -4,6 +4,9 @@ import sh.sinux.musicmanager.AppCommand.Command;
 import sh.sinux.musicmanager.Musicmanager;
 import sh.sinux.musicmanager.Playlist.Playlist;
 
+/**
+ * @author Simon Leonard
+ */
 public class AddPlaylistCommand implements Command {
     private final Playlist playlist;
 

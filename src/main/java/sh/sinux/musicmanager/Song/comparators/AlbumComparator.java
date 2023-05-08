@@ -4,6 +4,9 @@ import sh.sinux.musicmanager.Song.Song;
 
 import java.util.Comparator;
 
+/**
+ * @author Simon Leonard
+ */
 public class AlbumComparator implements Comparator<Song> {
     /**
      * Compares two songs by album, and where two albums are the same, use natural order (by title and artist)

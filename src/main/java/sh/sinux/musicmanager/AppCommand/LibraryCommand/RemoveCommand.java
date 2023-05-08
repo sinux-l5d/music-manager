@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author Simon Leonard
+ */
 public class RemoveCommand implements Command {
     private final LibraryStorage lib;
     private final String title;

@@ -4,6 +4,9 @@ import sh.sinux.musicmanager.AppCommand.Command;
 import sh.sinux.musicmanager.LibraryStorage.LibraryStorage;
 import sh.sinux.musicmanager.Playlist.Playlist;
 
+/**
+ * @author Simon Leonard
+ */
 public class CreateCommand implements Command {
     private final LibraryStorage lib;
     private final String name;

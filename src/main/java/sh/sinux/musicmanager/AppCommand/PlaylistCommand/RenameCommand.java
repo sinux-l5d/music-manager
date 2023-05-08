@@ -4,6 +4,9 @@ import sh.sinux.musicmanager.AppCommand.Command;
 
 import java.util.Arrays;
 
+/**
+ * @author Simon Leonard
+ */
 public class RenameCommand implements Command {
     private final String[] args;
 

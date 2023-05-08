@@ -1,12 +1,14 @@
 package sh.sinux.musicmanager.MyHashMap;
 
-import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 import sh.sinux.musicmanager.MyLinkedList.MyLinkedList;
 
 import java.lang.reflect.Array;
 
+/**
+ * @author Simon Leonard
+ */
 @State(Scope.Benchmark)
 public class MyHashMap<K, V> {
     /**
@@ -22,7 +24,7 @@ public class MyHashMap<K, V> {
     /**
      * the array of linked lists that will store the key/value pairs
      */
-    private MyLinkedList<Entry<K, V>>[] data;
+    private final MyLinkedList<Entry<K, V>>[] data;
     private final Class<K> kClass;
     private final Class<V> vClass;
 

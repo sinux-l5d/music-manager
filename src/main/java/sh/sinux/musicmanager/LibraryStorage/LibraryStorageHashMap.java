@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
+/**
+ * @author Simon Leonard
+ */
 public class LibraryStorageHashMap implements LibraryStorage {
     private final MyHashMap<Integer, Song> libraryStorage;
 

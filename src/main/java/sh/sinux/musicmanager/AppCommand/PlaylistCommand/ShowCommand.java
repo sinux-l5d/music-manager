@@ -2,6 +2,9 @@ package sh.sinux.musicmanager.AppCommand.PlaylistCommand;
 
 import sh.sinux.musicmanager.AppCommand.Command;
 
+/**
+ * @author Simon Leonard
+ */
 public class ShowCommand implements Command {
     private final String[] args;
 

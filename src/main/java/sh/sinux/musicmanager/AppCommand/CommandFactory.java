@@ -6,6 +6,9 @@ import sh.sinux.musicmanager.LibraryStorage.LibraryStorage;
 
 import java.util.Arrays;
 
+/**
+ * @author Simon Leonard
+ */
 public class CommandFactory {
     private final LibraryStorage lib;
     private final String helpstring;

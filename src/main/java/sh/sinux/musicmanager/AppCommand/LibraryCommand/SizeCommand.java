@@ -3,6 +3,9 @@ package sh.sinux.musicmanager.AppCommand.LibraryCommand;
 import sh.sinux.musicmanager.AppCommand.Command;
 import sh.sinux.musicmanager.LibraryStorage.LibraryStorage;
 
+/**
+ * @author Simon Leonard
+ */
 public class SizeCommand implements Command {
     private final LibraryStorage lib;
     public SizeCommand(LibraryStorage lib) {

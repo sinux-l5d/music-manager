@@ -4,6 +4,9 @@ import sh.sinux.musicmanager.Song.Song;
 
 import java.util.Comparator;
 
+/**
+ * @author Simon Leonard
+ */
 public interface LibraryStorage {
     void add(Song song);
 

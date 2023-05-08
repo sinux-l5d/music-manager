@@ -5,6 +5,9 @@ import sh.sinux.musicmanager.Song.Song;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * @author Simon Leonard
+ */
 public class LibraryStorageCommon implements LibraryStorage {
     private final LibraryStorageLinkedList linkedListLibraryStorage;
     private final LibraryStorageHashMap hashMapLibraryStorage;
@@ -81,7 +84,6 @@ public class LibraryStorageCommon implements LibraryStorage {
     public Song[] searchByArtist(String artist) {
         var s1 = linkedListLibraryStorage.searchByArtist(artist);
         var s2 = hashMapLibraryStorage.searchByArtist(artist);
-        // TODO: don't use Arrays.equals, what if it's not the same order?
         if (arraySameSongs(s1, s2)) {
             return s1;
         } else {

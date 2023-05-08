@@ -4,6 +4,9 @@ import sh.sinux.musicmanager.Song.Song;
 
 import java.util.Comparator;
 
+/**
+ * @author Simon Leonard
+ */
 public class NaturalOrderComparator implements Comparator<Song> {
     /**
      * Compares two songs by their natural order (by title and artist)

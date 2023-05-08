@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * @author Simon Leonard
+ * @author Zi Jie Lee
+ */
 public class LibraryStorageLinkedList implements LibraryStorage {
     private final MyLinkedList<Song> songs;
     public LibraryStorageLinkedList() {

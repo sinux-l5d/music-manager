@@ -6,6 +6,9 @@ import sh.sinux.musicmanager.Playlist.Playlist;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * @author Simon Leonard
+ */
 public class ListPlaylistCommand implements Command {
 
     @Override

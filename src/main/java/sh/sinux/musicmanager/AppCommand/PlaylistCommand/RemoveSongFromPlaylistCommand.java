@@ -3,6 +3,9 @@ package sh.sinux.musicmanager.AppCommand.PlaylistCommand;
 import sh.sinux.musicmanager.AppCommand.Command;
 import sh.sinux.musicmanager.Playlist.Playlist;
 
+/**
+ * @author Simon Leonard
+ */
 public class RemoveSongFromPlaylistCommand implements Command {
     private final Playlist playlist;
     private final int id;
